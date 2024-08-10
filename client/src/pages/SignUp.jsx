@@ -38,7 +38,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className=" mt-20 ">
+    <div className=" mt-20 mb-36">
       <div className=" p-4 md:p-3 max-w-sm mx-auto md:items-center">
         <div className="">
           <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
