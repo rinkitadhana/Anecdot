@@ -38,8 +38,11 @@ const SignUp = () => {
   };
 
   return (
-    <div className=" mt-20 mb-36">
+    <div className=" mt-16 mb-20">
       <div className=" p-4 md:p-3 max-w-sm mx-auto md:items-center">
+        <div className="flex justify-center text-4xl text-gray-700 font-semibold font-sans mb-10">
+          <div className="">Join us Today</div>
+        </div>
         <div className="">
           <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
             <div>
