@@ -1,6 +1,6 @@
 const Header = () => {
   return (
-    <section className="py-4 ">
+    <section className="py-2 my-4">
       <div className="flex justify-between items-center">
         <a href="" className=" text-xl font-semibold font-popins ">
           MyBlogs
