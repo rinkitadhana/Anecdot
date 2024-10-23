@@ -1,6 +1,6 @@
 const Blog = () => {
   return (
-    <div className="flex flex-row gap-4 p-2 my-4  hover:bg-black/10 cursor-pointer rounded-xl ">
+    <div className="flex flex-row gap-4 p-2 my-4  hover:bg-black/10 cursor-pointer rounded-xl transition-all">
       <div className=" basis-2/5 ">
         <img
           className="image"
@@ -14,7 +14,7 @@ const Blog = () => {
           Lorem ipsum dolor sit amet consect adipielit.
         </h1>
         <div className="flex gap-2 items-center">
-          <a className=" font-semibold opacity-60 hover:underline hover:opacity-100 cursor-pointer">
+          <a className=" font-semibold opacity-60 hover:underline hover:opacity-100 cursor-pointer transition-all">
             Rinkit Adhana
           </a>
           <time className=" opacity-60 font-semibold text-sm">
