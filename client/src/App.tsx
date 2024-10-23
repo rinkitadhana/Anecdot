@@ -7,8 +7,6 @@ const App = () => {
     <div>
       <Screen>
         <Header />
-        <br />
-
         <Blog />
         <Blog />
         <Blog />

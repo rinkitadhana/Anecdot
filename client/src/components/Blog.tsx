@@ -1,6 +1,6 @@
 const Blog = () => {
   return (
-    <div className="flex flex-row gap-4 p-2 my-4  hover:bg-black/10 cursor-pointer rounded-xl transition-all">
+    <div className="flex md:flex-row flex-col md:gap-4 gap-2 p-2 my-4  hover:bg-black/10 cursor-pointer rounded-xl transition-all">
       <div className=" basis-2/5 ">
         <img
           className="image"
@@ -9,7 +9,7 @@ const Blog = () => {
         />
       </div>
 
-      <div className="basis-3/5 flex flex-col gap-2">
+      <div className="basis-3/5 flex flex-col md:gap-2 gap-1">
         <h1 className="text-3xl font-bold font-sans">
           Lorem ipsum dolor sit amet consect adipielit.
         </h1>

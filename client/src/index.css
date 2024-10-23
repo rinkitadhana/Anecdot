@@ -3,8 +3,7 @@
 @tailwind utilities;
 
 .screen {
-  @apply max-w-[950px];
-  margin: auto;
+  @apply md:max-w-[950px] md:mx-auto mx-2;
 }
 
 .image {
