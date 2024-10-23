@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.screen {
+  @apply max-w-[950px];
+  margin: auto;
+}
+
+.image {
+  @apply rounded-xl object-cover;
+  height: 220px;
+  width: 500px;
+}
