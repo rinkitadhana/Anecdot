@@ -1,4 +1,4 @@
-const Blog = () => {
+const Post = () => {
   return (
     <div className="flex md:flex-row flex-col md:gap-4 gap-2 p-2 my-4  hover:bg-black/10 cursor-pointer rounded-xl transition-all">
       <div className=" basis-2/5 ">
@@ -32,4 +32,4 @@ const Blog = () => {
   )
 }
 
-export default Blog
+export default Post
