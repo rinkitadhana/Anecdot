@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 const Login = () => {
   return (
-    <section className="flex flex-col gap-4  md:border-2 border-zinc-300 rounded-lg mt-16 md:w-[60%] md:mx-auto md:px-4 py-6  ">
+    <section className="flex flex-col gap-4  md:border-2 border-zinc-300 rounded-lg mt-16 md:w-[50%] md:mx-auto md:px-4 py-6  ">
       <div className="flex flex-col gap-0.5 items-center">
         <h1 className=" text-3xl font-semibold font-popins">LogIn</h1>
         <p className="text-sm  opacity-70">Enter your credentials here</p>
