@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.screen {
+  @apply md:max-w-[950px] md:mx-auto mx-2;
+}
+
+.image {
+  @apply rounded-xl object-cover;
+  height: 220px;
+  width: 500px;
+}
+
+/* FORM */
+.input {
+  @apply px-2 py-1 border-2 rounded-lg border-zinc-400;
+}
+.btn {
+  @apply w-full border-2 border-zinc-800 rounded-lg py-1 hover:bg-zinc-800 hover:text-white font-semibold transition-all;
+}
+.lnk {
+  @apply text-blue-600 hover:text-blue-400 hover:underline;
+}
