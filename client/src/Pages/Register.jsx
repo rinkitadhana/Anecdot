@@ -7,11 +7,16 @@ const Register = () => {
   const [email, setEmail] = useState("")
   async function register(ev) {
     ev.preventDefault()
-    await fetch("http://localhost:4000/register", {
+    const response = await fetch("http://localhost:4000/register", {
       method: "POST",
       body: JSON.stringify({ email, username, password }),
       headers: { "Content-Type": "application/json" },
     })
+    if (response.status === 200) {
+      alert("Registration successful!")
+    } else {
+      alert("Registration failed!")
+    }
   }
   return (
     <section className="flex flex-col gap-4  md:border-2 border-zinc-300 rounded-lg md:mt-16 mt-9 md:w-[50%] md:mx-auto md:px-4 py-6  ">
