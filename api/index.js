@@ -1,7 +1,10 @@
 import express from "express"
+import cors from "cors"
 
 const app = express()
 import dotenv from "dotenv"
+app.use(cors())
+app.use(express.json())
 
 dotenv.config({
   path: "./.env",
@@ -9,7 +12,7 @@ dotenv.config({
 const PORT = process.env.PORT | 4000
 
 app.post("/register", (req, res) => {
-  res.send("Hello!!")
+  const { email, username, password } = req.body
 })
 
 app.listen(PORT, () => {
