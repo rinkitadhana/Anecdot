@@ -13,6 +13,7 @@ const PORT = process.env.PORT | 4000
 
 app.post("/register", (req, res) => {
   const { email, username, password } = req.body
+  res.json({ requestData: { email, username, password } })
 })
 
 app.listen(PORT, () => {
