@@ -5,7 +5,7 @@ const Header = () => {
     <section className="py-2 my-4">
       <div className="flex justify-between items-center">
         <Link to="/" className=" text-xl font-semibold font-popins ">
-          MyBlogs
+          Anecdot.
         </Link>
         <nav className=" flex gap-2 items-center">
           <Link
