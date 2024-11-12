@@ -5,6 +5,7 @@ import connectDB from "./database/index.js"
 import { User } from "./models/User.model.js"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
+import cookieParser from "cookie-parser"
 
 dotenv.config({
   path: "./.env",
@@ -14,6 +15,7 @@ const salt = bcrypt.genSaltSync(10)
 const secret = "RinkitAdhanaIsGay!"
 app.use(cors({ credentials: true, origin: "http://localhost:5173" }))
 app.use(express.json())
+app.use(cookieParser())
 
 const PORT = process.env.PORT | 4000
 connectDB()
@@ -47,6 +49,18 @@ app.post("/login", async (req, res) => {
   } else {
     res.status(400).json("Wrong credentials!")
   }
+})
+
+app.get("/profile", (req, res) => {
+  const { token } = req.cookies
+  jwt.verify(token, secret, {}, (err, info) => {
+    if (err) throw err
+    res.json(info)
+  })
+})
+
+app.post("/logout", (req, res) => {
+  res.cookie("token", "").json({ message: "OK" })
 })
 
 app.listen(PORT, () => {
