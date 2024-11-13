@@ -5,17 +5,28 @@ const Register = () => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [email, setEmail] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState("")
+  const [response, setResponse] = useState("")
   async function register(ev) {
+    setLoading(true)
+    setError("")
+    setResponse("")
     ev.preventDefault()
+    if (!email || !username || !password) {
+      setLoading(false)
+      return setError("Fill all the credentials")
+    }
     const response = await fetch("http://localhost:4000/register", {
       method: "POST",
       body: JSON.stringify({ email, username, password }),
       headers: { "Content-Type": "application/json" },
     })
+    setLoading(false)
     if (response.status === 200) {
-      alert("Registration successful!")
+      setResponse("Registration successful!")
     } else {
-      alert("Registration failed!")
+      setError("Registration failed!")
     }
   }
   return (
@@ -49,8 +60,20 @@ const Register = () => {
             onChange={(ev) => setPassword(ev.target.value)}
           />
         </div>
+        {error && (
+          <div className=" border-2 rounded-md px-3 py-1 text-center border-red-400 text-red-400">
+            {error}
+          </div>
+        )}
+        {response && (
+          <div className=" border-2 rounded-md px-3 py-1 text-center border-green-600 text-green-600">
+            {response}
+          </div>
+        )}
         <div className="flex flex-col gap-4">
-          <button className="btn ">Register</button>
+          <button className="btn ">
+            {loading ? "Loading..." : "Register"}
+          </button>
           <p>
             Already have an account?{" "}
             <Link to="/login" className="lnk">

@@ -6,23 +6,32 @@ const Login = () => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [redirect, setRedirect] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState("")
   const { setUserInfo } = useContext(UserContext)
 
   async function login(ev) {
+    setError("")
+    setLoading(true)
     ev.preventDefault()
+    if (!username || !password) {
+      setLoading(false)
+      return setError("Fill all the credentials")
+    }
     const response = await fetch("http://localhost:4000/login", {
       method: "POST",
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" },
       credentials: "include",
     })
+    setLoading(false)
     if (response.ok) {
       response.json().then((userInfo) => {
         setUserInfo(userInfo)
         setRedirect(true)
       })
     } else {
-      alert("wrong credentials")
+      setError("Wrong credentials")
     }
   }
 
@@ -54,8 +63,14 @@ const Login = () => {
             onChange={(ev) => setPassword(ev.target.value)}
           />
         </div>
+        {error && (
+          <div className=" border-2 rounded-md px-3 py-1 text-center border-red-400 text-red-400">
+            {error}
+          </div>
+        )}
+
         <div className="flex flex-col gap-4">
-          <button className="btn">Login</button>
+          <button className="btn ">{loading ? "Loading..." : "Login"}</button>
           <p>
             Don't have an account?{" "}
             <Link to="/register" className="lnk">
