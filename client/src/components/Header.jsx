@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import { UserContext } from "./UserContext"
 
 const Header = () => {
-  const [username, setUsername] = useState("")
+  const { userInfo, setUserInfo } = useContext(UserContext)
   useEffect(() => {
     fetch("http://localhost:4000/profile", {
       credentials: "include",
     }).then((response) => {
       response.json().then((userInfo) => {
-        setUsername(userInfo.username)
+        setUserInfo(userInfo)
       })
     })
   }, [])
@@ -18,8 +19,10 @@ const Header = () => {
       credentials: "include",
       method: "POST",
     })
-    setUsername("")
+    setUserInfo("")
   }
+
+  const username = userInfo?.username
   return (
     <section className="py-2 my-4 mx-2 md:mx-0">
       <div className="flex justify-between items-center">

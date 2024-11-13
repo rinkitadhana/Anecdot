@@ -5,17 +5,20 @@ import Login from "./Pages/Login"
 import Register from "./Pages/Register"
 import Screen from "./Layout/Screen"
 import Layout from "./Layout/Layout"
+import { UserContextProvider } from "./components/UserContext"
 const App = () => {
   return (
     <div>
       <Screen>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<IndexPage />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Route>
-        </Routes>
+        <UserContextProvider>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<IndexPage />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+            </Route>
+          </Routes>
+        </UserContextProvider>
       </Screen>
     </div>
   )

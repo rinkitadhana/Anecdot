@@ -13,7 +13,7 @@ dotenv.config({
 const app = express()
 const salt = bcrypt.genSaltSync(10)
 const secret = "RinkitAdhanaIsGay!"
-app.use(cors({ credentials: true, origin: "http://localhost:5173" }))
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }))
 app.use(express.json())
 app.use(cookieParser())
 
@@ -35,16 +35,13 @@ app.post("/register", async (req, res) => {
 })
 
 app.post("/login", async (req, res) => {
-  console.log("bhello")
-
   const { username, password } = req.body
   const userDoc = await User.findOne({ username })
   const passOk = bcrypt.compareSync(password, userDoc.password)
   if (passOk) {
-    console.log("hello")
     jwt.sign({ username, id: userDoc._id }, secret, {}, (err, token) => {
       if (err) throw err
-      res.cookie("token", token).json({ message: "OK" })
+      res.cookie("token", token).json({ id: userDoc._id, username })
     })
   } else {
     res.status(400).json("Wrong credentials!")
