@@ -14,7 +14,10 @@
 
 /* FORM */
 .input {
-  @apply px-2 py-1 border-2 rounded-lg border-zinc-400;
+  @apply px-2 py-1 w-full border-2 rounded-lg border-zinc-400;
+}
+.post-input {
+  @apply px-2 py-1 w-full border rounded-md border-zinc-400 focus:border-zinc-600 outline-none;
 }
 .btn {
   @apply w-full border-2 border-zinc-800 rounded-lg py-1 hover:bg-zinc-800 hover:text-white font-semibold transition-all;
