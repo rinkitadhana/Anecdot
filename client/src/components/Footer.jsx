@@ -27,7 +27,7 @@ const Footer = () => {
   ]
   return (
     <footer className="flex flex-col gap-1 items-center justify-centers py-8">
-      <div className=" flex flex-wrap gap-4 items-center">
+      <div className=" flex flex-wrap gap-2 md:gap-4 items-center">
         {links.map((link) => (
           <a
             href={link.link}
