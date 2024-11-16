@@ -7,6 +7,8 @@ import cookieParser from "cookie-parser"
 import connectDB from "./database/index.js"
 import User from "./models/User.model.js"
 import multer from "multer"
+import fs from "fs"
+import Post from "./models/Post.model.js"
 
 dotenv.config({ path: "./.env" })
 
@@ -70,4 +72,21 @@ app.get("/profile", (req, res) => {
 
 app.post("/logout", (req, res) => {
   res.cookie("token", "").json({ message: "OK" })
+})
+
+app.post("/post", uploadMiddleware.single("file"), async (req, res) => {
+  const { originalname, path } = req.file
+  const parts = originalname.split(".")
+  const ext = parts[parts.length - 1]
+  const newPath = path + "." + ext
+  fs.renameSync(path, newPath)
+
+  const { title, summary, content } = req.body
+  const postDoc = await Post.create({
+    title,
+    summary,
+    content,
+    cover: newPath,
+  })
+  res.json(postDoc)
 })

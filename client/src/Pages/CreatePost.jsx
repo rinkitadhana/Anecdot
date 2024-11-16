@@ -1,6 +1,7 @@
 import { useState } from "react"
 import ReactQuill from "react-quill"
 import "react-quill/dist/quill.snow.css"
+import { Navigate } from "react-router-dom"
 
 const modules = {
   toolbar: [
@@ -35,13 +36,12 @@ const CreatePost = () => {
   const [summary, setSummary] = useState("")
   const [content, setContent] = useState("")
   const [files, setFiles] = useState("")
-  const [response, setResponse] = useState(null)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [redirect, setRedirect] = useState(false)
 
   async function createNewPost(ev) {
     ev.preventDefault()
-    setResponse(null)
     setError(null)
     setLoading(true)
     const data = new FormData()
@@ -59,10 +59,13 @@ const CreatePost = () => {
     })
     setLoading(false)
     if (response.ok) {
-      setResponse("Post created successfully!")
+      setRedirect(true)
     } else {
       setError("Something went wrong!")
     }
+  }
+  if (redirect) {
+    return <Navigate to={"/"} />
   }
 
   return (
@@ -100,11 +103,7 @@ const CreatePost = () => {
               {error}
             </div>
           )}
-          {response && (
-            <div className=" border-2 rounded-md px-3 py-1 text-center border-green-600 text-green-600">
-              {response}
-            </div>
-          )}
+
           <button className="btn">
             {loading ? "Loading..." : "Create Post"}
           </button>
