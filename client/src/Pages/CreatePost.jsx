@@ -34,11 +34,41 @@ const CreatePost = () => {
   const [title, setTitle] = useState("")
   const [summary, setSummary] = useState("")
   const [content, setContent] = useState("")
+  const [files, setFiles] = useState("")
+  const [response, setResponse] = useState(null)
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
+
+  async function createNewPost(ev) {
+    ev.preventDefault()
+    setResponse(null)
+    setError(null)
+    setLoading(true)
+    const data = new FormData()
+    data.set("title", title)
+    data.set("summary", summary)
+    data.set("content", content)
+    data.set("file", files[0])
+    if (!title || !summary || !content || !files) {
+      setLoading(false)
+      return setError("Please fill in all fields!")
+    }
+    const response = await fetch("http://localhost:4000/post", {
+      method: "POST",
+      body: data,
+    })
+    setLoading(false)
+    if (response.ok) {
+      setResponse("Post created successfully!")
+    } else {
+      setError("Something went wrong!")
+    }
+  }
 
   return (
     <section className=" my-10 mx-2 md:mx-0">
       <div>
-        <form className=" flex flex-col gap-4">
+        <form className=" flex flex-col gap-4" onSubmit={createNewPost}>
           <input
             type="text"
             placeholder="Title"
@@ -55,7 +85,8 @@ const CreatePost = () => {
           />
           <input
             type="file"
-            class=" hover:cursor-pointer w-fit border border-zinc-400 p-2 rounded-lg text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-zinc-200 hover:file:cursor-pointer file:text-black hover:file:text-white hover:file:bg-black file:transition-all"
+            onChange={(ev) => setFiles(ev.target.files)}
+            className=" hover:cursor-pointer w-fit border border-zinc-400 p-2 rounded-lg text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-zinc-200 hover:file:cursor-pointer file:text-black hover:file:text-white hover:file:bg-black file:transition-all"
           />
           <ReactQuill
             value={content}
@@ -64,7 +95,19 @@ const CreatePost = () => {
             formats={formats}
             theme="snow"
           />
-          <button className="btn">Create Post</button>
+          {error && (
+            <div className=" border-2 rounded-md px-3 py-1 text-center border-red-400 text-red-400">
+              {error}
+            </div>
+          )}
+          {response && (
+            <div className=" border-2 rounded-md px-3 py-1 text-center border-green-600 text-green-600">
+              {response}
+            </div>
+          )}
+          <button className="btn">
+            {loading ? "Loading..." : "Create Post"}
+          </button>
         </form>
       </div>
     </section>

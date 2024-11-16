@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken"
 import cookieParser from "cookie-parser"
 import connectDB from "./database/index.js"
 import User from "./models/User.model.js"
+import multer from "multer"
 
 dotenv.config({ path: "./.env" })
 
@@ -16,6 +17,7 @@ const secret = "RinkitAdhanaIsGay!"
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }))
 app.use(express.json())
 app.use(cookieParser())
+const uploadMiddleware = multer({ dest: "uploads/" })
 
 connectDB()
   .then(
