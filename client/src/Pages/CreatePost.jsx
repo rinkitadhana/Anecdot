@@ -56,6 +56,7 @@ const CreatePost = () => {
     const response = await fetch("http://localhost:4000/post", {
       method: "POST",
       body: data,
+      credentials: "include",
     })
     setLoading(false)
     if (response.ok) {
@@ -69,7 +70,7 @@ const CreatePost = () => {
   }
 
   return (
-    <section className=" my-10 mx-2 md:mx-0">
+    <section className=" my-10 mx-2 ">
       <div>
         <form className=" flex flex-col gap-4" onSubmit={createNewPost}>
           <input

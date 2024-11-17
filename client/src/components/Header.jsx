@@ -26,7 +26,7 @@ const Header = () => {
   const username = userInfo?.username
 
   return (
-    <section className="py-2 my-4 mx-2 md:mx-0">
+    <section className="py-2 my-4 mx-2 ">
       <div className="flex justify-between items-center">
         <Link to="/" className=" text-2xl font-semibold font-popins ">
           Anecdot.
