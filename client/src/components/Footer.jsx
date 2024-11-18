@@ -27,17 +27,33 @@ const Footer = () => {
   ]
   return (
     <footer className="flex flex-col gap-1 items-center justify-centers py-8">
-      <div className=" flex flex-wrap gap-2 md:gap-4 items-center">
+      <div className="hidden md:flex flex-wrap gap-2 md:gap-4 items-center">
         {links.map((link) => (
-          <a
-            href={link.link}
-            key={link.name}
-            target="_blank"
-            className=" font-medium text-zinc-800 hover:text-zinc-500 flex flex-row gap-0.5 items-center"
-          >
-            {link.icon}
-            {link.name}
-          </a>
+          <>
+            <a
+              href={link.link}
+              key={link.name}
+              target="_blank"
+              className=" font-medium text-zinc-800 hover:text-zinc-500 flex flex-row gap-0.5 items-center"
+            >
+              {link.icon}
+              {link.name}
+            </a>
+          </>
+        ))}
+      </div>
+      <div className="md:hidden flex flex-wrap gap-5 md:gap-4 items-center">
+        {links.map((link) => (
+          <>
+            <a
+              href={link.link}
+              key={link.name}
+              target="_blank"
+              className=" text-xl font-medium text-zinc-800 hover:text-zinc-500 flex flex-row gap-0.5 items-center"
+            >
+              {link.icon}
+            </a>
+          </>
         ))}
       </div>
       <div className=" text-black/95">
