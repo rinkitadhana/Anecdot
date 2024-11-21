@@ -22,6 +22,9 @@
 .btn {
   @apply w-full border-2 border-zinc-800 rounded-lg py-1 hover:bg-zinc-800 hover:text-white font-semibold transition-all;
 }
+.create-btn {
+  @apply md:w-fit w-full px-3 border-2 mx-auto border-zinc-800 rounded-lg py-1 hover:bg-zinc-800 hover:text-white font-semibold transition-all;
+}
 .lnk {
   @apply text-blue-600 hover:text-blue-400 hover:underline;
 }

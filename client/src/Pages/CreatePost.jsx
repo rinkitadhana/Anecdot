@@ -1,7 +1,7 @@
 import { useState } from "react"
 import ReactQuill from "react-quill"
 import "react-quill/dist/quill.snow.css"
-import { Navigate } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 
 const modules = {
   toolbar: [
@@ -70,8 +70,12 @@ const CreatePost = () => {
   }
 
   return (
-    <section className=" my-10 mx-2 ">
-      <div>
+    <section>
+      <Link className=" font-medium group hover:text-zinc-600" to="/">
+        {"<"}{" "}
+        <span className=" group-hover:underline">Back to the all posts</span>
+      </Link>
+      <div className="my-10 mx-2">
         <form className=" flex flex-col gap-4" onSubmit={createNewPost}>
           <input
             type="text"
@@ -105,7 +109,7 @@ const CreatePost = () => {
             </div>
           )}
 
-          <button className="btn">
+          <button className="create-btn">
             {loading ? "Loading..." : "Create Post"}
           </button>
         </form>
