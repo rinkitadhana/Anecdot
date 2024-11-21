@@ -10,7 +10,13 @@ const IndexPage = () => {
       })
     })
   }, [])
-  return <>{posts.length > 0 && posts.map((post) => <Post {...post} />)}</>
+  return (
+    <>
+      <div className=" flex flex-col gap-5 md:gap-2">
+        {posts.length > 0 && posts.map((post) => <Post {...post} />)}
+      </div>
+    </>
+  )
 }
 
 export default IndexPage

@@ -1,6 +1,7 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { UserContext } from "./UserContext"
+import { TfiWrite } from "react-icons/tfi"
 
 const Header = () => {
   const { userInfo, setUserInfo } = useContext(UserContext)
@@ -35,10 +36,12 @@ const Header = () => {
           <nav className=" flex gap-2 items-center">
             <Link
               to="/create"
-              className="border-2 border-zinc-800 rounded-lg bg-zinc-800 px-3 py-0.5 text-white font-semibold  font-sans"
+              className="border-2 flex gap-1 items-center border-zinc-800 rounded-lg bg-zinc-800 px-2 py-0.5 text-white font-semibold  font-sans"
             >
-              Create
+              <TfiWrite className=" text-sm" />
+              Write
             </Link>
+
             <a
               onClick={logout}
               className="border-2 cursor-pointer border-zinc-800 rounded-lg  px-2 py-0.5 font-semibold font-sans hover:bg-zinc-800 hover:text-white transition-all "

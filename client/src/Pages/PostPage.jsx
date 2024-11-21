@@ -21,7 +21,7 @@ const PostPage = () => {
       </Link>
 
       <h1 className=" md:text-4xl text-xl font-bold text-center">
-        {postInfo?.title || "Anonymous"}
+        {postInfo?.title || "Error : Something went wrong!"}
       </h1>
       <div className="flex gap-2 items-center mx-auto ">
         <h1 className="flex gap-1 font-semibold items-center w-fit rounded-md">
@@ -43,14 +43,18 @@ const PostPage = () => {
       <div>
         <img
           className=" w-full object-cover rounded-xl max-h-[500px]"
-          src={`http://localhost:4000/${postInfo?.cover || "sui"}`}
+          src={`http://localhost:4000/${
+            postInfo?.cover || "Error : Something went wrong!"
+          }`}
           alt="cover"
         />
       </div>
 
       <div
         className=" font-popins  md:text-lg text-zinc-700 "
-        dangerouslySetInnerHTML={{ __html: postInfo?.content || "Error" }}
+        dangerouslySetInnerHTML={{
+          __html: postInfo?.content || "Error : Something went wrong!",
+        }}
       ></div>
       <Link className=" font-medium group hover:text-zinc-600" to="/">
         {"<"}{" "}

@@ -70,39 +70,46 @@ const CreatePost = () => {
   }
 
   return (
-    <section>
+    <section className=" mx-2 flex  flex-col md:gap-6 gap-4">
       <Link className=" font-medium group hover:text-zinc-600" to="/">
         {"<"}{" "}
         <span className=" group-hover:underline">Back to the all posts</span>
       </Link>
-      <div className="my-10 mx-2">
-        <form className=" flex flex-col gap-4" onSubmit={createNewPost}>
-          <input
-            type="text"
-            placeholder="Title"
-            value={title}
-            onChange={(ev) => setTitle(ev.target.value)}
-            className="post-input"
-          />
-          <input
-            type="text"
-            placeholder="Summary"
-            value={summary}
-            onChange={(ev) => setSummary(ev.target.value)}
-            className="post-input"
-          />
-          <input
-            type="file"
-            onChange={(ev) => setFiles(ev.target.files)}
-            className=" hover:cursor-pointer w-fit border border-zinc-400 p-2 rounded-lg text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-zinc-200 hover:file:cursor-pointer file:text-black hover:file:text-white hover:file:bg-black file:transition-all"
-          />
-          <ReactQuill
-            value={content}
-            onChange={(newValue) => setContent(newValue)}
-            modules={modules}
-            formats={formats}
-            theme="snow"
-          />
+      <h1 className=" text-2xl font-semibold font-popins">
+        What’s on Your Mind Today?
+      </h1>
+      <div>
+        <form className=" flex flex-col gap-4 " onSubmit={createNewPost}>
+          <div className=" flex flex-col gap-5  ">
+            <input
+              type="text"
+              placeholder="Title"
+              value={title}
+              onChange={(ev) => setTitle(ev.target.value)}
+              className="post-input"
+            />
+            <input
+              type="text"
+              placeholder="Summary"
+              value={summary}
+              onChange={(ev) => setSummary(ev.target.value)}
+              className="post-input"
+            />
+            <input
+              type="file"
+              onChange={(ev) => setFiles(ev.target.files)}
+              className=" hover:cursor-pointer w-fit border border-zinc-400 p-2 rounded-lg text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-zinc-200 hover:file:cursor-pointer file:text-black hover:file:text-white hover:file:bg-black file:transition-all"
+            />
+            <ReactQuill
+              value={content}
+              onChange={(newValue) => setContent(newValue)}
+              modules={modules}
+              formats={formats}
+              theme="snow"
+              className=" text-xl"
+            />
+          </div>
+
           {error && (
             <div className=" border-2 rounded-md px-3 py-1 text-center border-red-400 text-red-400">
               {error}
