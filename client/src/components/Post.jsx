@@ -11,8 +11,8 @@ const Post = ({ _id, title, summary, cover, createdAt, author }) => {
     } else {
       setNewTitle(title)
     }
-    if (summary.length > 475) {
-      setNewSummary(summary.slice(0, 475) + "...")
+    if (summary.length > 425) {
+      setNewSummary(summary.slice(0, 425) + "...")
     } else {
       setNewSummary(summary)
     }
@@ -30,7 +30,7 @@ const Post = ({ _id, title, summary, cover, createdAt, author }) => {
         </div>
 
         <div className="basis-3/5 flex flex-col gap-0.5">
-          <h1 className="text-2xl font-bold font-sans">{newTitle} </h1>
+          <h1 className="text-2xl font-semibold">{newTitle} </h1>
           <div className="flex gap-3 items-center">
             <a className=" font-semibold opacity-85 hover:underline hover:opacity-100 cursor-pointer transition-all">
               {author?.username || "Anonymous"}

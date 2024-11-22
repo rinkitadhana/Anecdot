@@ -2,6 +2,7 @@ import { useState } from "react"
 import ReactQuill from "react-quill"
 import "react-quill/dist/quill.snow.css"
 import { Link, Navigate } from "react-router-dom"
+import Back from "../components/Back"
 
 const modules = {
   toolbar: [
@@ -71,10 +72,7 @@ const CreatePost = () => {
 
   return (
     <section className=" mx-2 flex  flex-col md:gap-6 gap-4">
-      <Link className=" font-medium group hover:text-zinc-600" to="/">
-        {"<"}{" "}
-        <span className=" group-hover:underline">Back to the all posts</span>
-      </Link>
+      <Back />
       <h1 className=" text-2xl font-semibold font-popins">
         What’s on Your Mind Today?
       </h1>
@@ -98,7 +96,7 @@ const CreatePost = () => {
             <input
               type="file"
               onChange={(ev) => setFiles(ev.target.files)}
-              className=" hover:cursor-pointer w-fit border border-zinc-400 p-2 rounded-lg text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-zinc-200 hover:file:cursor-pointer file:text-black hover:file:text-white hover:file:bg-black file:transition-all"
+              className=" hover:cursor-pointer w-fit font-sans border border-zinc-400 p-2 rounded-lg text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-zinc-200 hover:file:cursor-pointer file:text-black hover:file:text-white hover:file:bg-black file:transition-all"
             />
             <ReactQuill
               value={content}

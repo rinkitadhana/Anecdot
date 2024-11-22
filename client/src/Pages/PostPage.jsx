@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import { FaUserCircle } from "react-icons/fa"
 import { format } from "date-fns"
+import Back from "../components/Back"
 
 const PostPage = () => {
   const [postInfo, setPostInfo] = useState(null)
@@ -15,12 +16,9 @@ const PostPage = () => {
   }, [])
   return (
     <section className=" flex flex-col md:gap-6 gap-4 mx-2 ">
-      <Link className=" font-medium group hover:text-zinc-600" to="/">
-        {"<"}{" "}
-        <span className=" group-hover:underline">Back to the all posts</span>
-      </Link>
+      <Back />
 
-      <h1 className=" md:text-4xl text-xl font-bold text-center">
+      <h1 className=" md:text-4xl text-xl font-semibold text-center">
         {postInfo?.title || "Error : Something went wrong!"}
       </h1>
       <div className="flex gap-2 items-center mx-auto ">
@@ -32,7 +30,7 @@ const PostPage = () => {
           {postInfo?.author?.username || "Anonymous"}
         </h1>
         •
-        <p className=" text-sm font-semibold text-zinc-700">
+        <p className=" text-sm font-medium text-zinc-700">
           {format(
             new Date(postInfo?.createdAt || Date.now()),
             "dd MMM, yyy | hh:mm a"
@@ -56,10 +54,7 @@ const PostPage = () => {
           __html: postInfo?.content || "Error : Something went wrong!",
         }}
       ></div>
-      <Link className=" font-medium group hover:text-zinc-600" to="/">
-        {"<"}{" "}
-        <span className=" group-hover:underline">Back to the all posts</span>
-      </Link>
+      <Back />
     </section>
   )
 }

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .screen {
-  @apply md:max-w-[950px] md:mx-auto mx-2;
+  @apply md:max-w-[950px] md:mx-auto mx-2 font-popins text-zinc-900;
 }
 
 .image {
@@ -17,13 +17,13 @@
   @apply px-2 py-1 w-full border-2 rounded-lg border-zinc-400;
 }
 .post-input {
-  @apply px-2 py-1 w-full text-xl  border-zinc-400 focus:border-zinc-600 outline-none;
+  @apply px-2 py-1 w-full md:text-xl text-lg  border-zinc-400 focus:border-zinc-600 outline-none;
 }
 .btn {
-  @apply w-full border-2 border-zinc-800 rounded-lg py-1 hover:bg-zinc-800 hover:text-white font-semibold transition-all;
+  @apply w-full border-2 border-zinc-800 rounded-lg py-1 hover:bg-zinc-800 hover:text-white font-semibold transition-all font-sans;
 }
 .create-btn {
-  @apply md:w-fit w-full px-3 border-2 mx-auto border-zinc-800 rounded-lg py-1 hover:bg-zinc-800 hover:text-white font-semibold transition-all;
+  @apply md:w-fit font-sans w-full px-3 border-2 mx-auto border-zinc-800 rounded-lg py-1 hover:bg-zinc-800 hover:text-white font-semibold transition-all;
 }
 .lnk {
   @apply text-blue-600 hover:text-blue-400 hover:underline;

@@ -36,7 +36,7 @@ const Header = () => {
           <nav className=" flex gap-2 items-center">
             <Link
               to="/create"
-              className="border-2 flex gap-1 items-center border-zinc-800 rounded-lg bg-zinc-800 px-2 py-0.5 text-white font-semibold  font-sans"
+              className="  border-2  border-zinc-200 flex gap-1 items-center  rounded-lg bg-zinc-200 px-2 py-0.5 text-black font-semibold  font-sans"
             >
               <TfiWrite className=" text-sm" />
               Write
@@ -53,7 +53,7 @@ const Header = () => {
           <nav className=" flex gap-2 items-center">
             <Link
               to="/login"
-              className="border-2 border-zinc-800 rounded-lg bg-zinc-800 px-3 py-0.5 text-white font-semibold  font-sans"
+              className="  border-2  border-zinc-200 flex gap-1 items-center  rounded-lg bg-zinc-200 px-2 py-0.5 text-black font-semibold  font-sans"
             >
               Login
             </Link>
