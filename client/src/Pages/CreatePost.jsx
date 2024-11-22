@@ -95,6 +95,7 @@ const CreatePost = () => {
             />
             <input
               type="file"
+              accept="image/*"
               onChange={(ev) => setFiles(ev.target.files)}
               className=" hover:cursor-pointer w-fit font-sans border border-zinc-400 p-2 rounded-lg text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-zinc-200 hover:file:cursor-pointer file:text-black hover:file:text-white hover:file:bg-black file:transition-all"
             />

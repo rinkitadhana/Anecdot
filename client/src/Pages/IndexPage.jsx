@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Post from "./../components/Post"
+import LoadingSkeleton from "./../components/LoadingSkeleton"
 
 const IndexPage = () => {
   const [posts, setPosts] = useState([])
@@ -16,7 +17,7 @@ const IndexPage = () => {
   return (
     <>
       {loading ? (
-        <div>loading</div>
+        <LoadingSkeleton />
       ) : (
         <div className=" flex flex-col gap-5 md:gap-2">
           {posts.length > 0 && posts.map((post) => <Post {...post} />)}
