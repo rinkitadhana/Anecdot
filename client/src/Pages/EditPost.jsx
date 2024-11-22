@@ -1,7 +1,7 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ReactQuill from "react-quill"
 import "react-quill/dist/quill.snow.css"
-import { Navigate } from "react-router-dom"
+import { Navigate, useParams } from "react-router-dom"
 import Back from "../components/Back"
 
 const modules = {
@@ -40,6 +40,18 @@ const CreatePost = () => {
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
   const [redirect, setRedirect] = useState(false)
+  const { id } = useParams()
+
+  useEffect(() => {
+    fetch("http://localhost:4000/post/" + id).then((response) => {
+      response.json().then((postInfo) => {
+        setTitle(postInfo?.title || "Error!")
+        setSummary(postInfo?.summary || "Error!")
+        setContent(postInfo?.content || "Error!")
+        setFiles(postInfo?.files?.[0] || "Error!")
+      })
+    })
+  })
 
   async function createNewPost(ev) {
     ev.preventDefault()
@@ -50,12 +62,13 @@ const CreatePost = () => {
     data.set("summary", summary)
     data.set("content", content)
     data.set("file", files[0])
+    data.set("id", id)
     if (!title || !summary || !content || !files) {
       setLoading(false)
       return setError("Please fill in all fields!")
     }
     const response = await fetch("http://localhost:4000/post", {
-      method: "POST",
+      method: "PUT",
       body: data,
       credentials: "include",
     })
@@ -67,14 +80,14 @@ const CreatePost = () => {
     }
   }
   if (redirect) {
-    return <Navigate to={"/"} />
+    return <Navigate to={`/post/${id}`} />
   }
 
   return (
     <section className=" mx-2 flex  flex-col md:gap-6 gap-4">
-      <Back path={"/"} />
+      <Back path={`/post/${id}`} />
       <h1 className=" text-2xl font-semibold font-popins">
-        What’s on Your Mind Today?
+        Revise, update, and make it yours again.
       </h1>
       <div>
         <form className=" flex flex-col gap-4 " onSubmit={createNewPost}>
@@ -116,7 +129,7 @@ const CreatePost = () => {
           )}
 
           <button className="create-btn">
-            {loading ? "Loading..." : "Create Post"}
+            {loading ? "Loading..." : "Update Post"}
           </button>
         </form>
       </div>

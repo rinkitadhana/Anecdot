@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import { FaUserCircle } from "react-icons/fa"
 import { format } from "date-fns"
 import Back from "../components/Back"
+import { TfiWrite } from "react-icons/tfi"
 
 const PostPage = () => {
   const [postInfo, setPostInfo] = useState(null)
+  const { userInfo } = useContext
   const { id } = useParams()
   useEffect(() => {
     fetch(`http://localhost:4000/post/${id}`).then((response) => {
@@ -15,13 +17,13 @@ const PostPage = () => {
     })
   }, [])
   return (
-    <section className=" flex flex-col md:gap-6 gap-4 mx-2 ">
-      <Back />
+    <section className=" flex flex-col md:gap-4 gap-4 mx-2 ">
+      <Back path="/" />
 
       <h1 className=" md:text-4xl text-xl font-semibold text-center">
         {postInfo?.title || "Error : Something went wrong!"}
       </h1>
-      <div className="flex gap-2 items-center mx-auto ">
+      <div className="flex flex-wrap gap-2  items-center mx-auto ">
         <h1 className="flex gap-1 font-semibold items-center w-fit rounded-md">
           <span className=" text-xl">
             <FaUserCircle />
@@ -37,6 +39,20 @@ const PostPage = () => {
           )}
         </p>
       </div>
+
+      {userInfo?.id ||
+        "Error!" === postInfo?.author?._id ||
+        ("Error!" && (
+          <div className="flex justify-center">
+            <Link
+              className=" border-2 border-black px-2 py-1 rounded-lg font-semibold font-sans flex  md:hover:bg-black transition-all md:hover:text-white items-center gap-1"
+              to={`/edit/${postInfo?._id}`}
+            >
+              <TfiWrite />
+              Edit Post
+            </Link>
+          </div>
+        ))}
 
       <div>
         <img
@@ -54,7 +70,7 @@ const PostPage = () => {
           __html: postInfo?.content || "Error : Something went wrong!",
         }}
       ></div>
-      <Back />
+      <Back path="/" />
     </section>
   )
 }
