@@ -36,13 +36,13 @@ const Header = () => {
   const username = userInfo?.username
 
   return (
-    <section className="py-3.5 mb-6 px-8 border-b border-zinc-200  ">
+    <section className="py-3.5 mb-6 md:px-8 px-4 border-b border-zinc-200  ">
       <div className="flex justify-between items-center">
         <div className=" flex gap-10 items-center">
           <Link to="/" className=" text-2xl font-semibold font-popins ">
             Anecdot.
           </Link>
-          <div className=" flex gap-2 items-center">
+          <div className=" md:flex gap-2 items-center hidden">
             <input
               placeholder="Search your Interest..."
               type="search"
@@ -56,7 +56,7 @@ const Header = () => {
         <div className=" flex gap-3 items-center">
           <Link
             to="/about"
-            className=" font-semibold bg-zinc-200 rounded-lg px-2 py-1.5  text-zinc-800"
+            className=" hidden md:block font-semibold bg-zinc-200 rounded-lg px-2 py-1.5  text-zinc-800"
           >
             About
           </Link>
@@ -75,7 +75,7 @@ const Header = () => {
 
               <a
                 onClick={logout}
-                className="border-2 cursor-pointer border-zinc-800 rounded-lg  px-2 py-1 font-semibold font-sans hover:bg-black hover:text-white transition-all "
+                className=" hidden md:block border-2 cursor-pointer border-zinc-800 rounded-lg  px-2 py-1 font-semibold font-sans hover:bg-black hover:text-white transition-all "
               >
                 Logout
               </a>
@@ -90,7 +90,7 @@ const Header = () => {
               </Link>
               <Link
                 to="/register"
-                className="border-2 border-zinc-800 rounded-lg  px-2 py-1 font-semibold font-sans hover:bg-black hover:text-white transition-all "
+                className=" hidden md:block border-2 border-zinc-800 rounded-lg  px-2 py-1 font-semibold font-sans hover:bg-black hover:text-white transition-all "
               >
                 Register
               </Link>

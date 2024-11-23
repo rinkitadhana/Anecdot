@@ -7,7 +7,7 @@ const IndexPage = () => {
   const [loading, setLoading] = useState(false)
   useEffect(() => {
     setLoading(true)
-    fetch("http://localhost:4000/post").then((response) => {
+    fetch("http://localhost:4000//post").then((response) => {
       response.json().then((posts) => {
         setPosts(posts)
         setLoading(false)

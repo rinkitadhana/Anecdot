@@ -5,6 +5,7 @@ import { format } from "date-fns"
 import Back from "../components/Back"
 import { TfiWrite } from "react-icons/tfi"
 import PostPageLoading from "../components/PostPageLoading"
+import { MdDelete } from "react-icons/md"
 
 const PostPage = () => {
   const [postInfo, setPostInfo] = useState(null)
@@ -51,13 +52,19 @@ const PostPage = () => {
           {userInfo?.id ||
             "Error!" === postInfo?.author?._id ||
             ("Error!" && (
-              <div className="flex justify-center">
+              <div className="flex gap-2 justify-center">
                 <Link
                   className=" border-2 border-black px-2 py-1 rounded-lg font-semibold font-sans flex  md:hover:bg-black transition-all md:hover:text-white items-center gap-1"
                   to={`/edit/${postInfo?._id}`}
                 >
                   <TfiWrite />
                   Edit Post
+                </Link>
+                <Link
+                  title="delete"
+                  className=" text-xl border-2 border-red-400 px-2 py-1 rounded-lg font-semibold font-sans flex  md:hover:bg-red-400 md:hover:border-red-400 transition-all text-red-400 md:hover:text-white items-center gap-1"
+                >
+                  <MdDelete />
                 </Link>
               </div>
             ))}
