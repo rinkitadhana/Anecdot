@@ -60,7 +60,7 @@ const Header = () => {
           >
             About
           </Link>
-          <div className=" p-2 rounded-lg text-lg cursor-pointer border-2  bg-zinc-200 hover:bg-black hover:text-white transition-all">
+          <div className=" p-2 rounded-lg cursor-pointer border-2 hover:border-black  bg-zinc-200 hover:bg-black hover:text-white transition-all">
             <FaMoon />
           </div>
           {username ? (
