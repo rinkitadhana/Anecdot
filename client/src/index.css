@@ -7,9 +7,7 @@
 }
 
 .image {
-  @apply rounded-xl object-cover max-h-[220px];
-  width: 500px;
-  height: 220px;
+  @apply rounded-xl object-cover w-full md:h-[220px] h-[220px];
 }
 
 /* FORM */
