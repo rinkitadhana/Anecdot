@@ -88,14 +88,18 @@ const PostPage = () => {
                       <AlertDialogTitle>
                         Are you absolutely sure?
                       </AlertDialogTitle>
-                      <AlertDialogDescription>
+                      <AlertDialogDescription className="text-zinc-700">
                         This action cannot be undone. This will permanently
                         delete your post and remove your data from our servers.
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction>Continue</AlertDialogAction>
+                      <AlertDialogCancel className="  border-2 border-black hover:bg-black hover:text-white">
+                        Cancel
+                      </AlertDialogCancel>
+                      <AlertDialogAction className="bg-black hover:bg-black">
+                        Continue
+                      </AlertDialogAction>
                     </AlertDialogFooter>
                   </AlertDialogContent>
                 </AlertDialog>
