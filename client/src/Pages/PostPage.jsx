@@ -7,6 +7,19 @@ import { TfiWrite } from "react-icons/tfi"
 import PostPageLoading from "../components/PostPageLoading"
 import { MdDelete } from "react-icons/md"
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+import { Button } from "@/components/ui/button"
+
 const PostPage = () => {
   const [postInfo, setPostInfo] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -24,7 +37,7 @@ const PostPage = () => {
   return (
     <>
       {loading ? (
-        <div className=" bg-zinc-200 w-full h-screen rounded-lg"></div>
+        <PostPageLoading />
       ) : (
         <section className=" flex flex-col md:gap-4 gap-4 mx-2 ">
           <Back path="/" />
@@ -60,12 +73,32 @@ const PostPage = () => {
                   <TfiWrite />
                   Edit Post
                 </Link>
-                <Link
-                  title="delete"
-                  className=" text-xl border-2 border-red-400 px-2 py-1 rounded-lg font-semibold font-sans flex  md:hover:bg-red-400 md:hover:border-red-400 transition-all text-red-400 md:hover:text-white items-center gap-1"
-                >
-                  <MdDelete />
-                </Link>
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button
+                      title="delete"
+                      className=" text-xl border-2 border-red-400 px-2 py-1 rounded-lg font-semibold font-sans flex  md:hover:bg-red-400 md:hover:border-red-400 transition-all text-red-400 md:hover:text-white items-center gap-1"
+                      variant="outline"
+                    >
+                      <MdDelete />
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>
+                        Are you absolutely sure?
+                      </AlertDialogTitle>
+                      <AlertDialogDescription>
+                        This action cannot be undone. This will permanently
+                        delete your post and remove your data from our servers.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction>Continue</AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
               </div>
             ))}
 

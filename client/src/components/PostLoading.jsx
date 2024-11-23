@@ -1,4 +1,4 @@
-const LoadingSkeleton = () => {
+const PostLoading = () => {
   return (
     <div className="flex flex-col gap-10 md:gap-6 my-5 px-2 md:px-0">
       {[...Array(5)].map((_, i) => (
@@ -15,4 +15,4 @@ const LoadingSkeleton = () => {
   )
 }
 
-export default LoadingSkeleton
+export default PostLoading
