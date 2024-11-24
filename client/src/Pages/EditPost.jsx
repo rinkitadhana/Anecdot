@@ -51,9 +51,9 @@ const CreatePost = () => {
         setFiles(postInfo?.files?.[0] || "Error!")
       })
     })
-  })
+  }, [])
 
-  async function createNewPost(ev) {
+  async function updatePost(ev) {
     ev.preventDefault()
     setError(null)
     setLoading(true)
@@ -61,8 +61,10 @@ const CreatePost = () => {
     data.set("title", title)
     data.set("summary", summary)
     data.set("content", content)
-    data.set("file", files[0])
     data.set("id", id)
+    if (files?.[0]) {
+      data.set("file", files?.[0] || "Error!")
+    }
     if (!title || !summary || !content || !files) {
       setLoading(false)
       return setError("Please fill in all fields!")
@@ -72,10 +74,11 @@ const CreatePost = () => {
       body: data,
       credentials: "include",
     })
-    setLoading(false)
     if (response.ok) {
+      setLoading(false)
       setRedirect(true)
     } else {
+      setLoading(false)
       setError("Something went wrong!")
     }
   }
@@ -90,7 +93,7 @@ const CreatePost = () => {
         Revise, update, and make it yours again.
       </h1>
       <div>
-        <form className=" flex flex-col gap-4 " onSubmit={createNewPost}>
+        <form className=" flex flex-col gap-4 " onSubmit={updatePost}>
           <div className=" flex flex-col gap-5  ">
             <input
               type="text"

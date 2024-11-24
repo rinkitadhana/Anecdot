@@ -45,7 +45,7 @@ const Footer = () => {
         ))}
       </div>
 
-      <div className=" text-black/95">© 2024 Rinkit. All rights reserved.</div>
+      <div className=" text-black/95">© 2024 Anecdot. All rights reserved.</div>
     </footer>
   )
 }

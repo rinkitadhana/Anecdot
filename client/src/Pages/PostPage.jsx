@@ -19,11 +19,12 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
+import { UserContext } from "../components/UserContext"
 
 const PostPage = () => {
   const [postInfo, setPostInfo] = useState(null)
   const [loading, setLoading] = useState(false)
-  const { userInfo } = useContext
+  const { userInfo } = useContext(UserContext)
   const { id } = useParams()
   useEffect(() => {
     setLoading(true)
@@ -62,49 +63,47 @@ const PostPage = () => {
             </p>
           </div>
 
-          {userInfo?.id ||
-            "Error!" === postInfo?.author?._id ||
-            ("Error!" && (
-              <div className="flex gap-2 justify-center">
-                <Link
-                  className=" border-2 border-black px-2 py-1 rounded-lg font-semibold font-sans flex  md:hover:bg-black transition-all md:hover:text-white items-center gap-1"
-                  to={`/edit/${postInfo?._id}`}
-                >
-                  <TfiWrite />
-                  Edit Post
-                </Link>
-                <AlertDialog>
-                  <AlertDialogTrigger asChild>
-                    <Button
-                      title="delete"
-                      className=" text-xl border-2 border-red-400 px-2 py-1 rounded-lg font-semibold font-sans flex  md:hover:bg-red-400 md:hover:border-red-400 transition-all text-red-400 md:hover:text-white items-center gap-1"
-                      variant="outline"
-                    >
-                      <MdDelete />
-                    </Button>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle>
-                        Are you absolutely sure?
-                      </AlertDialogTitle>
-                      <AlertDialogDescription className="text-zinc-700">
-                        This action cannot be undone. This will permanently
-                        delete your post and remove your data from our servers.
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel className="  border-2 border-black hover:bg-black hover:text-white">
-                        Cancel
-                      </AlertDialogCancel>
-                      <AlertDialogAction className="bg-black hover:bg-black">
-                        Continue
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
-              </div>
-            ))}
+          {userInfo?.id === postInfo?.author?._id && (
+            <div className="flex gap-2 justify-center">
+              <Link
+                className=" border-2 border-black px-2 py-1 rounded-lg font-semibold font-sans flex  md:hover:bg-black transition-all md:hover:text-white items-center gap-1"
+                to={`/edit/${postInfo?._id}`}
+              >
+                <TfiWrite />
+                Edit Post
+              </Link>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button
+                    title="delete"
+                    className=" text-xl border-2 border-red-400 px-2 py-1 rounded-lg font-semibold font-sans flex  md:hover:bg-red-400 md:hover:border-red-400 transition-all text-red-400 md:hover:text-white items-center gap-1"
+                    variant="outline"
+                  >
+                    <MdDelete />
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle className=" font-popins font-medium md:text-xl">
+                      Are you absolutely sure?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription className="text-zinc-800 font-popins ">
+                      This action cannot be undone. This will permanently delete
+                      your post and remove your data from our servers.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel className="  border-2 border-black hover:bg-black hover:text-white">
+                      Cancel
+                    </AlertDialogCancel>
+                    <AlertDialogAction className=" hover:bg-red-400 hover:text-white text-red-400 border-red-400 bg-white border-2">
+                      Delete
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </div>
+          )}
 
           <div>
             <img
