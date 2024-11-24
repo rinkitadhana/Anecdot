@@ -26,6 +26,9 @@ const Post = ({ _id, title, summary, cover, createdAt, author }) => {
             className="image"
             src={"http://localhost:4000/" + cover}
             alt="blog-img"
+            onError={(e) => {
+              e.target.src = "https://placehold.co/600x400?text=Image+Not+Found"
+            }}
           />
         </div>
 

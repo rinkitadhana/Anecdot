@@ -107,11 +107,13 @@ const PostPage = () => {
 
           <div>
             <img
-              className=" w-full object-cover rounded-xl max-h-[500px]"
-              src={`http://localhost:4000/${
-                postInfo?.cover || "Error : Something went wrong!"
-              }`}
+              className=" w-full object-cover rounded-xl h-full"
+              src={`http://localhost:4000/${postInfo?.cover}`}
               alt="cover"
+              onError={(e) => {
+                e.target.src =
+                  "https://placehold.co/600x400?text=Image+Not+Found"
+              }}
             />
           </div>
 
