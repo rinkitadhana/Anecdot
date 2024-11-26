@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useState, useRef } from "react"
 import { Link, Navigate } from "react-router-dom"
 import { UserContext } from "./UserContext"
 import { TfiWrite } from "react-icons/tfi"
@@ -10,6 +10,7 @@ const Header = () => {
   const { userInfo, setUserInfo } = useContext(UserContext)
   const [redirect, setRedirect] = useState(false)
   const [vis, setVis] = useState(false)
+  const menuRef = useRef()
 
   useEffect(() => {
     fetch("http://localhost:4000/profile", {
@@ -19,6 +20,19 @@ const Header = () => {
         setUserInfo(userInfo)
       })
     })
+  }, [])
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setVis(false)
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
   }, [])
 
   async function logout() {
@@ -100,19 +114,19 @@ const Header = () => {
               </Link>
             </nav>
           )}
-          <div
-            onClick={() => setVis((prev) => !prev)}
-            className=" md:hidden  text-3xl "
-          >
+          <div onClick={() => setVis(!vis)} className=" md:hidden  text-3xl ">
             <HiMenu />
           </div>
         </div>
       </div>
       {vis && (
-        <div className=" md:hidden absolute my-1 border w-fit flex flex-col gap-1.5 p-3 right-2 bg-white rounded-lg border-zinc-200 text-zinc-700">
+        <div
+          ref={menuRef}
+          className=" md:hidden absolute my-1 border w-fit flex flex-col gap-1.5 p-3 right-2 bg-white rounded-lg border-zinc-200 text-zinc-700"
+        >
           <Link
             to="/about"
-            onClick={() => setVis((prev) => !prev)}
+            onClick={() => setVis(false)}
             className="  font-popins font-medium text-center "
           >
             About
@@ -120,7 +134,10 @@ const Header = () => {
           <div className=" border-b  border-zinc-200 " />
           {username ? (
             <a
-              onClick={logout}
+              onClick={() => {
+                logout()
+                setVis(false)
+              }}
               className="  font-popins font-medium text-center "
             >
               Logout
@@ -128,7 +145,7 @@ const Header = () => {
           ) : (
             <Link
               to="/register"
-              onClick={() => setVis((prev) => !prev)}
+              onClick={() => setVis(false)}
               className="  font-popins font-medium text-center "
             >
               Register
