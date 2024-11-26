@@ -31,9 +31,9 @@ const Header = () => {
     setRedirect(true)
   }
 
-  if (redirect) {
-    return <Navigate to={"/"} />
-  }
+  // if (redirect) {
+  //   return <Navigate to={"/"} />
+  // }
 
   const username = userInfo?.username
 

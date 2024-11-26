@@ -63,12 +63,12 @@ const PostPage = () => {
             {postInfo?.title || "Error : Something went wrong!"}
           </h1>
           <div className="flex flex-wrap gap-2  items-center mx-auto ">
-            <h1 className="flex gap-1 font-semibold items-center w-fit rounded-md">
-              <span className=" text-xl">
+            <h1 className="flex gap-1 font-semibold items-center w-fit rounded-md text-zinc-800">
+              <span className=" text-2xl">
                 <FaUserCircle />
               </span>
 
-              {postInfo?.author?.username || "Anonymous"}
+              {postInfo?.author?.fullName || "Anonymous"}
             </h1>
             •
             <p className=" text-sm font-medium text-zinc-700">
