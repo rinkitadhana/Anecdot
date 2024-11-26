@@ -4,7 +4,7 @@ import dotenv from "dotenv"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import cookieParser from "cookie-parser"
-import connectDB from "./database/index.js"
+import connectDB from "./Database/index.js"
 import User from "./models/User.model.js"
 import multer from "multer"
 import fs from "fs"
@@ -12,7 +12,7 @@ import path from "path"
 import { fileURLToPath } from "url"
 import Post from "./models/Post.model.js"
 
-dotenv.config({ path: "./.env" })
+dotenv.config({ path: "../.env" })
 
 const app = express()
 const PORT = process.env.PORT
@@ -22,8 +22,7 @@ app.use(express.json())
 app.use(cookieParser())
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-app.use("/uploads", express.static(path.join(__dirname, "uploads")))
-
+app.use("/uploads", express.static(path.join(__dirname, "../uploads")))
 const uploadMiddleware = multer({ dest: "uploads/" })
 
 connectDB()

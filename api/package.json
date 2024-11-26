@@ -106,7 +106,7 @@
     "nodemon": "^3.1.7"
   },
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon ./src/index.js"
   },
   "author": "Rinkit Adhana",
   "license": "ISC"
