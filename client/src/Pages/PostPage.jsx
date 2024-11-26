@@ -56,7 +56,7 @@ const PostPage = () => {
       {loading ? (
         <PostPageLoading />
       ) : (
-        <section className=" flex flex-col md:gap-4 gap-4 mx-2 ">
+        <section className=" overflow-hidden flex flex-col md:gap-4 gap-4 mx-2 ">
           <Back path="/" />
 
           <h1 className=" md:text-4xl text-xl font-semibold text-center">

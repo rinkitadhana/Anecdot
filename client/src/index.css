@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .screen {
-  @apply md:max-w-[950px] md:mx-auto mx-2 font-popins text-zinc-900 my-6;
+  @apply md:max-w-[1000px] md:mx-auto mx-2 font-popins text-zinc-900 my-6;
 }
 
 .image {

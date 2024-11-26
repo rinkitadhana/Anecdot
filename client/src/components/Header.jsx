@@ -58,7 +58,7 @@ const Header = () => {
           <Link to="/" className=" text-2xl font-semibold font-popins ">
             Anecdot.
           </Link>
-          <div className=" hidden">
+          <div className="hidden">
             <div className=" md:flex gap-2 items-center hidden">
               <input
                 placeholder="Search your Interest..."
