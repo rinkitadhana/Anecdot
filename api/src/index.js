@@ -34,6 +34,9 @@ connectDB()
   .catch((err) => {
     console.log("MongoDB Error :", err)
   })
+app.get("/", (req, res) => {
+  res.send("Hello World!")
+})
 
 app.post("/register", async (req, res) => {
   const { fullName, username, password } = req.body
