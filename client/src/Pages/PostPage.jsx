@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { Link, Navigate, useParams } from "react-router-dom"
 import { FaUserCircle } from "react-icons/fa"
 import { format } from "date-fns"
 import Back from "../components/Back"
@@ -25,6 +25,7 @@ const PostPage = () => {
   const [postInfo, setPostInfo] = useState(null)
   const [loading, setLoading] = useState(false)
   const { userInfo } = useContext(UserContext)
+  const [redirect, setRedirect] = useState(false)
   const { id } = useParams()
   useEffect(() => {
     setLoading(true)
@@ -35,6 +36,21 @@ const PostPage = () => {
       })
     })
   }, [])
+  async function deletePost(ev) {
+    ev.preventDefault()
+    setRedirect(false)
+    const response = await fetch(`http://localhost:4000/post/${id}`, {
+      method: "DELETE",
+      credentials: "include",
+    })
+    if (response.ok) {
+      setRedirect(true)
+    }
+  }
+  if (redirect) {
+    return <Navigate to={"/"} />
+  }
+
   return (
     <>
       {loading ? (
@@ -96,7 +112,10 @@ const PostPage = () => {
                     <AlertDialogCancel className="  border-2 border-black hover:bg-black hover:text-white">
                       Cancel
                     </AlertDialogCancel>
-                    <AlertDialogAction className=" hover:bg-red-400 hover:text-white text-red-400 border-red-400 bg-white border-2">
+                    <AlertDialogAction
+                      onClick={deletePost}
+                      className=" hover:bg-red-400 hover:text-white text-red-400 border-red-400 bg-white border-2"
+                    >
                       Delete
                     </AlertDialogAction>
                   </AlertDialogFooter>

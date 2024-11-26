@@ -15,10 +15,9 @@ import Post from "./models/Post.model.js"
 dotenv.config({ path: "./.env" })
 
 const app = express()
-const PORT = process.env.PORT | 4000
+const PORT = process.env.PORT
 const salt = bcrypt.genSaltSync(10)
-const secret = "RinkitAdhanaIsGay!"
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }))
+app.use(cors({ credentials: true, origin: process.env.ORIGIN }))
 app.use(express.json())
 app.use(cookieParser())
 const __filename = fileURLToPath(import.meta.url)
@@ -38,10 +37,10 @@ connectDB()
   })
 
 app.post("/register", async (req, res) => {
-  const { email, username, password } = req.body
+  const { fullName, username, password } = req.body
   try {
     const userDoc = await User.create({
-      email,
+      fullName,
       username,
       password: bcrypt.hashSync(password, salt),
     })
@@ -58,10 +57,15 @@ app.post("/login", async (req, res) => {
 
   const passOk = bcrypt.compareSync(password, userDoc.password)
   if (passOk) {
-    jwt.sign({ username, id: userDoc._id }, secret, {}, (err, token) => {
-      if (err) throw err
-      res.cookie("token", token).json({ id: userDoc._id, username })
-    })
+    jwt.sign(
+      { username, id: userDoc._id },
+      process.env.SECRET_KEY,
+      {},
+      (err, token) => {
+        if (err) throw err
+        res.cookie("token", token).json({ id: userDoc._id, username })
+      }
+    )
   } else {
     return res.status(400).json("Wrong Password!")
   }
@@ -70,7 +74,7 @@ app.post("/login", async (req, res) => {
 app.get("/profile", (req, res) => {
   const { token } = req.cookies
   if (!token) return res.json({ message: "NOT LOGIN" })
-  jwt.verify(token, secret, {}, (err, info) => {
+  jwt.verify(token, process.env.SECRET_KEY, {}, (err, info) => {
     if (err) throw err
     res.json(info)
   })
@@ -89,7 +93,7 @@ app.post("/post", uploadMiddleware.single("file"), async (req, res) => {
 
   const { token } = req.cookies
   if (!token) return res.json({ message: "NOT LOGIN" })
-  jwt.verify(token, secret, {}, async (err, info) => {
+  jwt.verify(token, process.env.SECRET_KEY, {}, async (err, info) => {
     if (err) throw err
     const { title, summary, content } = req.body
     const postDoc = await Post.create({
@@ -108,12 +112,12 @@ app.put("/post", uploadMiddleware.single("file"), async (req, res) => {
     const { originalname, path } = req.file
     const parts = originalname.split(".")
     const ext = parts[parts.length - 1]
-    newPath = path + "." + ext // Removed const declaration to use outer newPath
+    newPath = path + "." + ext
     fs.renameSync(path, newPath)
   }
   const { token } = req.cookies
   if (!token) return res.json({ message: "NOT LOGIN" })
-  jwt.verify(token, secret, {}, async (err, info) => {
+  jwt.verify(token, process.env.SECRET_KEY, {}, async (err, info) => {
     if (err) throw err
     const { id, title, summary, content } = req.body
 
@@ -134,14 +138,31 @@ app.put("/post", uploadMiddleware.single("file"), async (req, res) => {
       },
       { new: true }
     )
-    res.json(updatedPost) // Return updated post instead of old one
+    res.json(updatedPost)
+  })
+})
+
+app.delete("/post/:id", async (req, res) => {
+  const { token } = req.cookies
+  if (!token) return res.json({ message: "NOT LOGIN" })
+  jwt.verify(token, process.env.SECRET_KEY, {}, async (err, info) => {
+    if (err) throw err
+    const { id } = req.params
+    const postDoc = await Post.findById(id)
+    const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id)
+
+    if (!isAuthor) {
+      return res.status(400).json("You are not the author")
+    }
+    await Post.findByIdAndDelete(id)
+    res.json({ message: "Post deleted successfully" })
   })
 })
 
 app.get("/post", async (req, res) => {
   res.json(
     await Post.find()
-      .populate("author", ["username"])
+      .populate("author", ["fullName"])
       .sort({ createdAt: -1 })
       .limit(20)
   )
@@ -149,6 +170,6 @@ app.get("/post", async (req, res) => {
 
 app.get("/post/:id", async (req, res) => {
   const { id } = req.params
-  const postDoc = await Post.findById(id).populate("author", ["username"])
+  const postDoc = await Post.findById(id).populate("author", ["fullName"])
   res.json(postDoc)
 })

@@ -30,7 +30,7 @@ const Footer = () => {
     },
   ]
   return (
-    <footer className="flex flex-col gap-1 items-center justify-centers py-8">
+    <footer className="flex flex-col gap-1 items-center justify-centers py-4">
       <div className="flex flex-wrap gap-5 md:gap-4 items-center">
         {links.map((link) => (
           <a

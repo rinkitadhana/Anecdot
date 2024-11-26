@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 const Register = () => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-  const [email, setEmail] = useState("")
+  const [fullName, setFullName] = useState("")
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [response, setResponse] = useState("")
@@ -13,17 +13,17 @@ const Register = () => {
     setError("")
     setResponse("")
     ev.preventDefault()
-    if (!email || !username || !password) {
+    if (!fullName || !username || !password) {
       setLoading(false)
       return setError("Fill all the credentials")
     }
     const response = await fetch("http://localhost:4000/register", {
       method: "POST",
-      body: JSON.stringify({ email, username, password }),
+      body: JSON.stringify({ fullName, username, password }),
       headers: { "Content-Type": "application/json" },
     })
     setLoading(false)
-    if (response.status === 200) {
+    if (response.ok) {
       setResponse("Registration successful!")
     } else {
       setError("Registration failed!")
@@ -40,10 +40,10 @@ const Register = () => {
         <div className="flex flex-col gap-2 ">
           <input
             type="text"
-            placeholder="email"
+            placeholder="Full Name"
             className="input"
-            value={email}
-            onChange={(ev) => setEmail(ev.target.value)}
+            value={fullName}
+            onChange={(ev) => setFullName(ev.target.value)}
           />
           <input
             type="text"
