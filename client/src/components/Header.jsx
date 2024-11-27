@@ -52,7 +52,7 @@ const Header = () => {
   const username = userInfo?.username
 
   return (
-    <section>
+    <section className=" fixed top-0 w-full bg-white/60 backdrop-blur-lg z-50">
       <div className="flex justify-between items-center border-b py-3.5 md:px-8 px-4  border-zinc-200">
         <div className=" flex gap-10 items-center">
           <Link to="/" className=" text-2xl font-semibold font-popins ">
@@ -122,7 +122,7 @@ const Header = () => {
       {vis && (
         <div
           ref={menuRef}
-          className=" md:hidden absolute my-1 border w-fit flex flex-col gap-1.5 p-3 right-2 bg-white rounded-lg border-zinc-200 text-zinc-700"
+          className=" md:hidden absolute my-1 border w-fit flex flex-col gap-1.5 p-3 right-2 bg-white z-50 rounded-lg border-zinc-200 text-zinc-700"
         >
           <Link
             to="/about"
