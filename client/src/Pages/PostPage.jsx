@@ -52,7 +52,7 @@ const PostPage = () => {
   }
 
   return (
-    <>
+    <section className=" min-h-screen">
       {loading ? (
         <PostPageLoading />
       ) : (
@@ -145,7 +145,7 @@ const PostPage = () => {
           <Back path="/" />
         </section>
       )}
-    </>
+    </section>
   )
 }
 
