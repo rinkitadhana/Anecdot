@@ -16,7 +16,7 @@ const IndexPage = () => {
     })
   }, [])
   return (
-    <>
+    <section className=" min-h-screen">
       {loading ? (
         <PostLoading />
       ) : (
@@ -24,7 +24,7 @@ const IndexPage = () => {
           {posts.length > 0 && posts.map((post) => <Post {...post} />)}
         </div>
       )}
-    </>
+    </section>
   )
 }
 

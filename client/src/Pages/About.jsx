@@ -5,7 +5,7 @@ const About = () => {
   return (
     <>
       <Back path="/" />
-      <section className="my-8 px-2 ">
+      <section className="my-5 px-2 ">
         <div className=" flex flex-col gap-4 items-center">
           <img
             className=" size-[220px] rounded"
