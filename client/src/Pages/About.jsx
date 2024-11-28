@@ -1,6 +1,6 @@
 import Back from "../components/Back"
 import { IoPlay } from "react-icons/io5"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { FiGithub } from "react-icons/fi"
 
 const About = () => {
@@ -45,6 +45,9 @@ const About = () => {
       name: "Easy to use UI and fun Projectttt",
     },
   ]
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <section className="md:px-0 px-2">

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState, useRef } from "react"
-import { Link, Navigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { UserContext } from "./UserContext"
 import { TfiWrite } from "react-icons/tfi"
 import { ImSearch } from "react-icons/im"
@@ -8,9 +8,9 @@ import { HiMenu } from "react-icons/hi"
 
 const Header = () => {
   const { userInfo, setUserInfo } = useContext(UserContext)
-  const [redirect, setRedirect] = useState(false)
   const [vis, setVis] = useState(false)
   const menuRef = useRef()
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetch("http://localhost:4000/profile", {
@@ -36,18 +36,13 @@ const Header = () => {
   }, [])
 
   async function logout() {
-    setRedirect(false)
     await fetch("http://localhost:4000/logout", {
       credentials: "include",
       method: "POST",
     })
     setUserInfo(null)
-    setRedirect(true)
+    navigate("/")
   }
-
-  // if (redirect) {
-  //   return <Navigate to={"/"} />
-  // }
 
   const username = userInfo?.username
 
