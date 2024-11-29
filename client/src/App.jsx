@@ -9,6 +9,7 @@ import CreatePost from "./Pages/CreatePost"
 import PostPage from "./Pages/PostPage"
 import EditPost from "./Pages/EditPost"
 import About from "./Pages/About"
+
 const App = () => {
   return (
     <div>
