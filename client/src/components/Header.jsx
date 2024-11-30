@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState, useRef } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { UserContext } from "./UserContext"
 import { TfiWrite } from "react-icons/tfi"
@@ -9,7 +9,6 @@ import { HiMenu } from "react-icons/hi"
 const Header = () => {
   const { userInfo, setUserInfo } = useContext(UserContext)
   const [vis, setVis] = useState(false)
-  const menuRef = useRef()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -20,19 +19,6 @@ const Header = () => {
         setUserInfo(userInfo)
       })
     })
-  }, [])
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setVis(false)
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
   }, [])
 
   async function logout() {
@@ -115,10 +101,7 @@ const Header = () => {
         </div>
       </div>
       {vis && (
-        <div
-          ref={menuRef}
-          className=" md:hidden absolute my-1 border w-fit flex flex-col gap-1.5 p-3 right-2 bg-white z-50 rounded-lg border-zinc-200 text-zinc-700"
-        >
+        <div className=" md:hidden absolute my-1 border w-fit flex flex-col gap-1.5 p-3 right-2 bg-white z-50 rounded-lg border-zinc-200 text-zinc-700">
           <Link
             to="/about"
             onClick={() => setVis(false)}
