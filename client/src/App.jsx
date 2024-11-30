@@ -9,11 +9,13 @@ import CreatePost from "./Pages/CreatePost"
 import PostPage from "./Pages/PostPage"
 import EditPost from "./Pages/EditPost"
 import About from "./Pages/About"
+import ScrollToTop from "./components/ScrollToTop"
 
 const App = () => {
   return (
     <div>
       <UserContextProvider>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<IndexPage />} />

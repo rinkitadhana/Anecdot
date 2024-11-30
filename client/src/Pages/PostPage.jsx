@@ -35,8 +35,6 @@ const PostPage = () => {
         setLoading(false)
       })
     })
-    // Scroll to top when component mounts
-    window.scrollTo(0, 0)
   }, [])
   async function deletePost(ev) {
     ev.preventDefault()
