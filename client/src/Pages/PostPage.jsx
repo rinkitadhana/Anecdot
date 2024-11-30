@@ -62,7 +62,7 @@ const PostPage = () => {
           <h1 className=" md:text-4xl text-xl font-semibold text-center">
             {postInfo?.title || "Error : Something went wrong!"}
           </h1>
-          <div className="flex flex-wrap gap-2  items-center mx-auto ">
+          <div className="flex flex-wrap gap-2 gap-y-1 justify-center  items-center mx-auto ">
             <h1 className="flex gap-1 font-semibold items-center w-fit rounded-md text-zinc-800">
               <span className=" text-2xl">
                 <FaUserCircle />
