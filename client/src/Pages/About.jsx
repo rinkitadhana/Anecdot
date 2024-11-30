@@ -59,7 +59,7 @@ const About = () => {
           Github
         </a>
       </div>
-      <section className="flex flex-col gap-4 my-6 ">
+      <section className="flex flex-col gap-4 my-6 border border-zinc-200 p-4 ">
         <div className=" flex flex-col gap-4 items-center">
           <img
             className=" md:size-[220px] rounded"
@@ -92,7 +92,7 @@ const About = () => {
               Client
             </p>
             {visClient && (
-              <div className=" flex flex-wrap gap-3 px-4">
+              <div className=" flex flex-wrap gap-y-2.5 md:gap-3 gap-2 px-4">
                 {client.map((client) => (
                   <div
                     key={client.name}
@@ -113,7 +113,7 @@ const About = () => {
               Server
             </p>
             {visServer && (
-              <div className=" flex flex-wrap gap-3 px-4">
+              <div className=" flex flex-wrap gap-y-2.5 md:gap-3 gap-2 px-4">
                 {server.map((server) => (
                   <div
                     key={server.name}
