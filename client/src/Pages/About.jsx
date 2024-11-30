@@ -92,7 +92,7 @@ const About = () => {
               Client
             </p>
             {visClient && (
-              <div className=" flex flex-wrap gap-y-2.5 md:gap-3 gap-2 px-4">
+              <div className=" flex flex-wrap gap-y-2.5  gap-2.5 px-4">
                 {client.map((client) => (
                   <div
                     key={client.name}
@@ -113,7 +113,7 @@ const About = () => {
               Server
             </p>
             {visServer && (
-              <div className=" flex flex-wrap gap-y-2.5 md:gap-3 gap-2 px-4">
+              <div className=" flex flex-wrap gap-y-2.5 gap-2.5 px-4">
                 {server.map((server) => (
                   <div
                     key={server.name}

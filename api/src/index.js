@@ -15,7 +15,7 @@ import Post from "./models/Post.model.js"
 dotenv.config({ path: "../.env" })
 
 const app = express()
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 4000
 const salt = bcrypt.genSaltSync(10)
 app.use(cors({ credentials: true, origin: process.env.ORIGIN }))
 app.use(express.json())
