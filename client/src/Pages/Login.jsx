@@ -1,6 +1,7 @@
 import { useContext, useState } from "react"
 import { Link, Navigate } from "react-router-dom"
 import { UserContext } from "../components/UserContext"
+import { FaSpinner } from "react-icons/fa6"
 
 const Login = () => {
   const [username, setUsername] = useState("")
@@ -70,7 +71,16 @@ const Login = () => {
         )}
 
         <div className="flex flex-col gap-4">
-          <button className="btn ">{loading ? "Loading..." : "Login"}</button>
+          <button className="btn ">
+            {loading ? (
+              <div className=" flex items-center gap-2">
+                <FaSpinner className="animate-spin" />
+                Loading
+              </div>
+            ) : (
+              "Login"
+            )}
+          </button>
           <p>
             Don't have an account?{" "}
             <Link to="/register" className="lnk">

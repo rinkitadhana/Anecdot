@@ -3,6 +3,7 @@ import ReactQuill from "react-quill"
 import "react-quill/dist/quill.snow.css"
 import { Navigate } from "react-router-dom"
 import Back from "../components/Back"
+import { FaSpinner } from "react-icons/fa6"
 
 const modules = {
   toolbar: [
@@ -116,7 +117,14 @@ const CreatePost = () => {
           )}
 
           <button className="create-btn">
-            {loading ? "Loading..." : "Create Post"}
+            {loading ? (
+              <div className=" flex items-center gap-2">
+                <FaSpinner className="animate-spin" />
+                Loading
+              </div>
+            ) : (
+              "Create Post"
+            )}
           </button>
         </form>
       </div>
