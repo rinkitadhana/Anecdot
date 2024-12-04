@@ -37,7 +37,7 @@ const Footer = () => {
             href={link.link}
             key={link.id}
             target="_blank"
-            className=" font-medium text-xl md:text-base text-zinc-800 md:hover:text-zinc-500 flex flex-row gap-0.5 items-center"
+            className=" font-medium text-xl md:text-base  md:hover:text-mainBlack/65 md:dark:hover:text-mainWhite/65 flex flex-row gap-0.5 items-center"
           >
             {link.icon}
             <span className=" hidden md:block"> {link.name}</span>
@@ -45,7 +45,7 @@ const Footer = () => {
         ))}
       </div>
 
-      <div className=" text-black/95">© 2024 Anecdot. All rights reserved.</div>
+      <div>© 2024 Anecdot. All rights reserved.</div>
     </footer>
   )
 }
