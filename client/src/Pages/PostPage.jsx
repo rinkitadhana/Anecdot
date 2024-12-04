@@ -39,7 +39,7 @@ const PostPage = () => {
   async function deletePost(ev) {
     ev.preventDefault()
     setRedirect(false)
-    const response = await fetch(`${import.meta.env.VITE_APP_URL}/post${id}`, {
+    const response = await fetch(`${import.meta.env.VITE_APP_URL}/post/${id}`, {
       method: "DELETE",
       credentials: "include",
     })
