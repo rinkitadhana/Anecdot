@@ -29,7 +29,7 @@ const PostPage = () => {
   const { id } = useParams()
   useEffect(() => {
     setLoading(true)
-    fetch(`${import.meta.env.VITE_APP_URL}/post${id}`).then((response) => {
+    fetch(`${import.meta.env.VITE_APP_URL}/post/${id}`).then((response) => {
       response.json().then((postInfo) => {
         setPostInfo(postInfo)
         setLoading(false)
