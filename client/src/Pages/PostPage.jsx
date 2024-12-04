@@ -29,7 +29,7 @@ const PostPage = () => {
   const { id } = useParams()
   useEffect(() => {
     setLoading(true)
-    fetch(`http://localhost:4000/post/${id}`).then((response) => {
+    fetch(`${import.meta.env.VITE_APP_URL}/post${id}`).then((response) => {
       response.json().then((postInfo) => {
         setPostInfo(postInfo)
         setLoading(false)
@@ -39,7 +39,7 @@ const PostPage = () => {
   async function deletePost(ev) {
     ev.preventDefault()
     setRedirect(false)
-    const response = await fetch(`http://localhost:4000/post/${id}`, {
+    const response = await fetch(`${import.meta.env.VITE_APP_URL}/post${id}`, {
       method: "DELETE",
       credentials: "include",
     })
@@ -127,7 +127,7 @@ const PostPage = () => {
           <div>
             <img
               className=" w-full object-cover rounded-xl h-full"
-              src={`http://localhost:4000/${postInfo?.cover}`}
+              src={`${import.meta.env.VITE_APP_URL}/${postInfo?.cover}`}
               alt="cover"
               onError={(e) => {
                 e.target.src =

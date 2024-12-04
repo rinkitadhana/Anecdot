@@ -12,7 +12,7 @@ const Header = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    fetch("http://localhost:4000/profile", {
+    fetch(`${import.meta.env.VITE_APP_URL}/profile`, {
       credentials: "include",
     }).then((response) => {
       response.json().then((userInfo) => {
@@ -22,7 +22,7 @@ const Header = () => {
   }, [])
 
   async function logout() {
-    await fetch("http://localhost:4000/logout", {
+    await fetch(`${import.meta.env.VITE_APP_URL}/logout`, {
       credentials: "include",
       method: "POST",
     })

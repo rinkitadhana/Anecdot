@@ -24,7 +24,7 @@ const Post = ({ _id, title, summary, cover, createdAt, author }) => {
         <div className=" basis-2/5 ">
           <img
             className="image"
-            src={"http://localhost:4000/" + cover}
+            src={`${import.meta.env.VITE_APP_URL}/` + cover}
             alt="blog-img"
             onError={(e) => {
               e.target.src = "https://placehold.co/600x400?text=Image+Not+Found"

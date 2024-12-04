@@ -44,7 +44,7 @@ const CreatePost = () => {
   const { id } = useParams()
 
   useEffect(() => {
-    fetch("http://localhost:4000/post/" + id).then((response) => {
+    fetch(`${import.meta.env.VITE_APP_URL}/post/` + id).then((response) => {
       response.json().then((postInfo) => {
         setTitle(postInfo?.title || "Error!")
         setSummary(postInfo?.summary || "Error!")
@@ -70,7 +70,7 @@ const CreatePost = () => {
       setLoading(false)
       return setError("Please fill in all fields!")
     }
-    const response = await fetch("http://localhost:4000/post", {
+    const response = await fetch(`${import.meta.env.VITE_APP_URL}/post`, {
       method: "PUT",
       body: data,
       credentials: "include",

@@ -8,7 +8,7 @@ const IndexPage = () => {
 
   useEffect(() => {
     setLoading(true)
-    fetch("http://localhost:4000/post").then((response) => {
+    fetch(`${import.meta.env.VITE_APP_URL}/post`).then((response) => {
       response.json().then((posts) => {
         setPosts(posts)
         setLoading(false)
