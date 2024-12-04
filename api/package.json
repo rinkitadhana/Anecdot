@@ -107,7 +107,8 @@
   },
   "scripts": {
     "start": "node ./src/index.js",
-    "dev": "nodemon ./src/index.js"
+    "dev": "nodemon ./src/index.js",
+    "build": "npm install"
   },
   "author": "Rinkit Adhana",
   "license": "ISC"
