@@ -11,7 +11,7 @@ const Layout = () => {
     <main
       className={`${
         theme ? "dark" : ""
-      } dark:bg-mainBlack dark:text-mainWhite transition-colors delay-75 `}
+      } dark:bg-mainBlack dark:text-mainWhite transition-colors delay-75  `}
     >
       <Header />
       <Screen>

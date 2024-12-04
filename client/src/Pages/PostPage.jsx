@@ -19,7 +19,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
-import { UserContext } from "../components/context/UserContext"
+import { UserContext } from "../components/UserContext"
 
 const PostPage = () => {
   const [postInfo, setPostInfo] = useState(null)
@@ -63,7 +63,7 @@ const PostPage = () => {
             {postInfo?.title || "Error : Something went wrong!"}
           </h1>
           <div className="flex flex-wrap gap-2 gap-y-1 justify-center  items-center mx-auto ">
-            <h1 className="flex gap-1 font-semibold items-center w-fit rounded-md text-zinc-800">
+            <h1 className="flex gap-1 font-semibold items-center w-fit rounded-md ">
               <span className=" text-2xl">
                 <FaUserCircle />
               </span>
@@ -71,7 +71,7 @@ const PostPage = () => {
               {postInfo?.author?.fullName || "Anonymous"}
             </h1>
             •
-            <p className=" text-sm font-medium text-zinc-700">
+            <p className=" text-sm font-medium opacity-80">
               {format(
                 new Date(postInfo?.createdAt || Date.now()),
                 "dd MMM, yyy | hh:mm a"
@@ -82,7 +82,7 @@ const PostPage = () => {
           {userInfo?.id === postInfo?.author?._id && (
             <div className="flex gap-2 justify-center">
               <Link
-                className=" border-2 border-black px-2 py-1 rounded-lg font-semibold font-sans flex  md:hover:bg-black transition-all md:hover:text-white items-center gap-1"
+                className=" border-2 border-mainBlack dark:border-mainWhite px-2 py-1 rounded-lg font-semibold font-sans flex  md:hover:bg-mainBlack md:dark:hover:bg-mainWhite  transition-all md:hover:text-mainWhite md:dark:hover:text-mainBlack items-center gap-1"
                 to={`/edit/${postInfo?._id}`}
               >
                 <TfiWrite />
@@ -90,11 +90,7 @@ const PostPage = () => {
               </Link>
               <AlertDialog>
                 <AlertDialogTrigger asChild>
-                  <Button
-                    title="delete"
-                    className=" text-xl border-2 border-red-400 px-2 py-1 rounded-lg font-semibold font-sans flex  md:hover:bg-red-400 md:hover:border-red-400 transition-all text-red-400 md:hover:text-white items-center gap-1"
-                    variant="outline"
-                  >
+                  <Button title="delete" variant="custom">
                     <MdDelete />
                   </Button>
                 </AlertDialogTrigger>
@@ -137,7 +133,7 @@ const PostPage = () => {
           </div>
 
           <div
-            className=" font-popins  md:text-lg text-zinc-700 "
+            className=" font-popins  md:text-lg "
             dangerouslySetInnerHTML={{
               __html: postInfo?.content || "Error : Something went wrong!",
             }}
