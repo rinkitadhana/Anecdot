@@ -10,8 +10,8 @@ export default {
       colors: {
         mainBlack: "#1a1c1e",
         mainWhite: "#e1e3e5",
-        primary: "#d0d0d0",
-        primaryDark: "#353535",
+        primary: "#CCCED1",
+        primaryDark: "#303234",
       },
       borderRadius: {
         lg: "var(--radius)",
