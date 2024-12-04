@@ -54,7 +54,7 @@ const Header = () => {
         </div>
         <div className=" flex gap-3 items-center">
           <Link
-            to="/about"
+            to="/"
             className=" hidden md:block font-semibold bg-zinc-200 rounded-lg px-2 py-1.5  text-zinc-800"
           >
             About
@@ -103,7 +103,7 @@ const Header = () => {
       {vis && (
         <div className=" md:hidden absolute my-1 border w-fit flex flex-col gap-1.5 p-3 right-2 bg-white z-50 rounded-lg border-zinc-200 text-zinc-700">
           <Link
-            to="/about"
+            to="/"
             onClick={() => setVis(false)}
             className="  font-popins font-medium text-center "
           >
