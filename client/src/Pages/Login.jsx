@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
 import { Link, Navigate } from "react-router-dom"
-import { UserContext } from "../components/UserContext"
+import { UserContext } from "../components/context/UserContext"
 import { FaSpinner } from "react-icons/fa6"
 
 const Login = () => {

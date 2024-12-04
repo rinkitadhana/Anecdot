@@ -19,7 +19,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
-import { UserContext } from "../components/UserContext"
+import { UserContext } from "../components/context/UserContext"
 
 const PostPage = () => {
   const [postInfo, setPostInfo] = useState(null)

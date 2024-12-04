@@ -16,7 +16,7 @@ const IndexPage = () => {
     })
   }, [])
   return (
-    <section className=" min-h-screen">
+    <section className="min-h-screen">
       {loading ? (
         <PostLoading />
       ) : (
