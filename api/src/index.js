@@ -1,16 +1,16 @@
 import express from "express"
-import User from "./Models/User.models.js"
+import User from "./models/User.models.js"
 import cors from "cors"
 import dotenv from "dotenv"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import cookieParser from "cookie-parser"
-import connectDB from "./Database/connectDB.js"
+import connectDB from "./database/connectDB.js"
 import multer from "multer"
 import fs from "fs"
 import path from "path"
 import { fileURLToPath } from "url"
-import Post from "./Models/Post.models.js"
+import Post from "./models/Post.models.js"
 
 dotenv.config({ path: "../.env" })
 
@@ -36,7 +36,7 @@ connectDB()
   })
 
 app.get("/", (req, res) => {
-  res.send("Hello World!")
+  res.send("Hello China!")
 })
 
 app.post("/register", async (req, res) => {
