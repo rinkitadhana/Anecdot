@@ -10,7 +10,7 @@ const Layout = () => {
   return (
     <main
       className={` min-h-screen ${
-        theme && "dark"
+        theme === "dark" ? "dark" : ""
       } bg-mainWhite text-mainBlack dark:bg-mainBlack dark:text-mainWhite   `}
     >
       <Header />

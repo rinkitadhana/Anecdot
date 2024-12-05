@@ -7,7 +7,9 @@ const ThemeButton = () => {
   const { theme, setTheme } = useContext(ThemeContext)
   return (
     <div
-      onClick={() => setTheme((prev) => !prev)}
+      onClick={() =>
+        setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"))
+      }
       className=" p-2 rounded-lg cursor-pointer border-2 md:hover:border-mainBlack  bg-primary dark:bg-primaryDark border-primary dark:border-primaryDark md:dark:hover:bg-mainWhite md:dark:hover:border-mainWhite md:hover:bg-mainBlack md:hover:text-mainWhite md:dark:hover:text-mainBlack transition-all "
     >
       {theme ? <IoSunnySharp /> : <FaMoon />}
