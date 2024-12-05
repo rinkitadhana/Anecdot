@@ -94,9 +94,9 @@ const PostPage = () => {
                     <MdDelete />
                   </Button>
                 </AlertDialogTrigger>
-                <AlertDialogContent>
+                <AlertDialogContent className="bg-mainWhite">
                   <AlertDialogHeader>
-                    <AlertDialogTitle className=" font-popins font-medium md:text-xl">
+                    <AlertDialogTitle className=" font-popins font-medium md:text-xl text-mainBlack dark:text-mainWhite">
                       Are you absolutely sure?
                     </AlertDialogTitle>
                     <AlertDialogDescription className="text-zinc-800 font-popins ">
@@ -105,12 +105,12 @@ const PostPage = () => {
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    <AlertDialogCancel className="  border-2 border-black hover:bg-black hover:text-white">
+                    <AlertDialogCancel className="  border-2 bg-mainWhite dark:hover:bg-mainWhite dark:hover:text-mainBlack dark:border-mainWhite dark:bg-mainBlack text-mainBlack dark:text-mainWhite border-black hover:bg-black hover:text-white">
                       Cancel
                     </AlertDialogCancel>
                     <AlertDialogAction
                       onClick={deletePost}
-                      className=" hover:bg-red-400 hover:text-white text-red-400 border-red-400 bg-white border-2"
+                      className=" hover:bg-red-400 dark:text-red-400 dark:hover:text-mainWhite dark:hover:bg-red-400 bg-mainWhite dark:bg-mainBlack hover:text-white text-red-400 border-red-400 border-2"
                     >
                       Delete
                     </AlertDialogAction>
