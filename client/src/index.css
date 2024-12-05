@@ -5,6 +5,7 @@
 body {
   @apply bg-mainWhite text-mainBlack;
 }
+
 .screen {
   @apply md:max-w-[1000px] md:mx-auto mx-2 font-popins pt-20;
 }

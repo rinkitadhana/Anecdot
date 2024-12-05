@@ -34,7 +34,7 @@ const Header = () => {
 
   return (
     <section className=" fixed top-0 w-full bg-mainWhite/60 dark:bg-mainBlack/60 backdrop-blur-lg z-50 select-none transition-colors  delay-75">
-      <div className="flex  justify-between items-center  py-3.5 md:px-8 px-4  ">
+      <div className="flex  justify-between items-center border-b border-primary dark:border-primaryDark transition-colors delay-75  py-3.5 md:px-8 px-4  ">
         <div className=" flex gap-10 items-center">
           <Link to="/" className=" text-2xl font-semibold font-popins ">
             Anecdot.
