@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { UserContext } from "./UserContext"
+import { UserContext } from "./context/UserContext"
 import { TfiWrite } from "react-icons/tfi"
 import { ImSearch } from "react-icons/im"
 import { HiMenu } from "react-icons/hi"
