@@ -66,7 +66,14 @@ app.post("/login", async (req, res) => {
       {},
       (err, token) => {
         if (err) throw err
-        res.cookie("token", token).json({ id: userDoc._id, username })
+        res
+          .cookie("token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+            maxAge: 1000 * 60 * 60 * 24 * 7,
+          })
+          .json({ id: userDoc._id, username }, "Login Successfully")
       }
     )
   } else {
@@ -84,7 +91,14 @@ app.get("/profile", (req, res) => {
 })
 
 app.post("/logout", (req, res) => {
-  res.cookie("token", "").json({ message: "OK" })
+  res
+    .cookie("token", "", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      expires: new Date(0),
+    })
+    .json({ message: "logged out" })
 })
 
 app.post("/post", uploadMiddleware.single("file"), async (req, res) => {
