@@ -14,11 +14,19 @@ const Header = () => {
   useEffect(() => {
     fetch(`${import.meta.env.VITE_APP_URL}/profile`, {
       credentials: "include",
-    }).then((response) => {
-      response.json().then((userInfo) => {
-        setUserInfo(userInfo)
-      })
     })
+      .then((response) => {
+        if (response.ok) {
+          response.json().then((userInfo) => {
+            setUserInfo(userInfo)
+          })
+        } else {
+          setUserInfo(null)
+        }
+      })
+      .catch(() => {
+        setUserInfo(null)
+      })
   }, [])
 
   async function logout() {
