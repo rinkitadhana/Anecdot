@@ -9,9 +9,9 @@ const Layout = () => {
   const { theme } = useContext(ThemeContext)
   return (
     <main
-      className={`${
-        theme ? "dark" : ""
-      } dark:bg-mainBlack dark:text-mainWhite transition-colors delay-75  `}
+      className={` min-h-screen ${
+        theme && "dark"
+      } bg-mainWhite text-mainBlack dark:bg-mainBlack dark:text-mainWhite   `}
     >
       <Header />
       <Screen>

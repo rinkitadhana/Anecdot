@@ -35,7 +35,7 @@ const Post = ({ _id, title, summary, cover, createdAt, author }) => {
         <div className="basis-3/5 flex flex-col gap-0.5">
           <h1 className="text-2xl font-semibold ">{newTitle}</h1>
           <div className="flex gap-3 items-center">
-            <a className=" font-semibold opacity-80 hover:underline hover:opacity-100 cursor-pointer transition-all">
+            <a className=" font-semibold opacity-80 hover:underline hover:opacity-100 cursor-pointer ">
               {author?.fullName || "Anonymous"}
             </a>
             <time className=" opacity-70 text-sm font-medium">

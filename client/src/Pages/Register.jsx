@@ -16,7 +16,7 @@ const Register = () => {
     ev.preventDefault()
     if (!fullName || !username || !password) {
       setLoading(false)
-      return setError("Fill all the credentials")
+      return setError("Fill all the credentials!")
     }
     const response = await fetch(`${import.meta.env.VITE_APP_URL}/register`, {
       method: "POST",
@@ -31,7 +31,7 @@ const Register = () => {
     }
   }
   return (
-    <section className="flex flex-col gap-4  md:border-2 border-zinc-300 rounded-lg md:mt-16 mt-9 md:w-[45%] md:mx-auto md:px-4 py-6  ">
+    <section className="flex flex-col gap-4  md:border-2  border-primary dark:border-primaryDark rounded-lg md:mt-16 mt-9 md:w-[45%] md:mx-auto md:px-4 py-6  ">
       <div className="flex flex-col gap-0.5 items-center">
         <h1 className=" text-3xl font-semibold font-popins">Register</h1>
         <p className="text-sm  opacity-70">Create your account today</p>

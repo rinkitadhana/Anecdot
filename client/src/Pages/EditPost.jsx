@@ -114,7 +114,7 @@ const CreatePost = () => {
               type="file"
               accept="image/*"
               onChange={(ev) => setFiles(ev.target.files)}
-              className=" hover:cursor-pointer w-fit font-sans border border-zinc-400 p-2 rounded-lg text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-zinc-200 hover:file:cursor-pointer file:text-black hover:file:text-white hover:file:bg-black file:transition-all"
+              className=" hover:cursor-pointer w-fit font-sans border border-primary dark:border-primaryDark p-2 rounded-lg text-sm dark:text-primary text-primaryDark  file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary dark:file:bg-primaryDark md:hover:file:cursor-pointer file:text-mainBlack dark:file:text-mainWhite md:hover:file:text-mainWhite md:dark:hover:file:text-mainBlack md:hover:file:bg-mainBlack md:dark:hover:file:bg-mainWhite md:file:transition-all"
             />
             <ReactQuill
               value={content}
