@@ -19,7 +19,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
-import { UserContext } from "../components/UserContext"
+import { UserContext } from "../components/context/UserContext"
 
 const PostPage = () => {
   const [postInfo, setPostInfo] = useState(null)
@@ -62,7 +62,7 @@ const PostPage = () => {
           <h1 className=" md:text-4xl text-xl font-semibold text-center">
             {postInfo?.title || "Error : Something went wrong!"}
           </h1>
-          <div className="flex flex-wrap gap-2 gap-y-1 justify-center  items-center mx-auto ">
+          <div className="flex md:flex-row flex-col gap-2  justify-center  items-center mx-auto ">
             <h1 className="flex gap-1 font-semibold items-center w-fit rounded-md ">
               <span className=" text-2xl">
                 <FaUserCircle />
@@ -70,7 +70,7 @@ const PostPage = () => {
 
               {postInfo?.author?.fullName || "Anonymous"}
             </h1>
-            •
+            <span className=" hidden md:block">•</span>
             <p className=" text-sm font-medium opacity-80">
               {format(
                 new Date(postInfo?.createdAt || Date.now()),

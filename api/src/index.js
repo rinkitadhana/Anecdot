@@ -4,13 +4,13 @@ import dotenv from "dotenv"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import cookieParser from "cookie-parser"
-import connectDB from "./Database/index.js"
-import User from "./models/User.model.js"
+import connectDB from "./Database/connectDB.js"
+import User from "./models/User.models.js"
 import multer from "multer"
 import fs from "fs"
 import path from "path"
 import { fileURLToPath } from "url"
-import Post from "./models/Post.model.js"
+import Post from "./Models/Post.models.js"
 
 dotenv.config({ path: "../.env" })
 
@@ -34,6 +34,7 @@ connectDB()
   .catch((err) => {
     console.log("MongoDB Error :", err)
   })
+
 app.get("/", (req, res) => {
   res.send("Hello World!")
 })
