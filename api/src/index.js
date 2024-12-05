@@ -73,7 +73,7 @@ app.post("/login", async (req, res) => {
             sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
             maxAge: 1000 * 60 * 60 * 24 * 7,
           })
-          .json({ id: userDoc._id, username }, "Login Successfully")
+          .json({ message: "Login Successfully" })
       }
     )
   } else {
