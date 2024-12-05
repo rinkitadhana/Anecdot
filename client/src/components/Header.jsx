@@ -11,23 +11,32 @@ const Header = () => {
   const [vis, setVis] = useState(false)
   const navigate = useNavigate()
 
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_APP_URL}/profile`, {
-      credentials: "include",
-    })
-      .then((response) => {
-        if (response.ok) {
-          response.json().then((userInfo) => {
-            setUserInfo(userInfo)
-          })
-        } else {
-          setUserInfo(null)
-        }
+  const fetchUserProfile = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_APP_URL}/profile`, {
+        credentials: "include",
       })
-      .catch(() => {
+      if (response.ok) {
+        const userInfo = await response.json()
+        setUserInfo(userInfo)
+      } else {
         setUserInfo(null)
-      })
+      }
+    } catch (error) {
+      setUserInfo(null)
+    }
+  }
+
+  useEffect(() => {
+    fetchUserProfile()
   }, [])
+
+  // Re-fetch profile when userInfo changes
+  useEffect(() => {
+    if (userInfo) {
+      fetchUserProfile()
+    }
+  }, [userInfo])
 
   async function logout() {
     await fetch(`${import.meta.env.VITE_APP_URL}/logout`, {
@@ -38,7 +47,7 @@ const Header = () => {
     navigate("/")
   }
 
-  const username = userInfo?.username
+  const username = userInfo?.username || ""
 
   return (
     <section className=" fixed top-0 w-full bg-mainWhite/60 dark:bg-mainBlack/60 backdrop-blur-lg z-50 select-none  ">
@@ -97,7 +106,7 @@ const Header = () => {
                 to="/register"
                 className=" hidden md:block border-2 cursor-pointer border-mainBlack dark:border-mainWhite rounded-lg  px-2 py-1 font-semibold font-sans hover:bg-mainBlack dark:hover:bg-mainWhite hover:text-mainWhite dark:hover:text-mainBlack "
               >
-                Register
+                Sign up
               </Link>
             </nav>
           )}

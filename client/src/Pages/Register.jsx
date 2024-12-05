@@ -33,7 +33,7 @@ const Register = () => {
   return (
     <section className="flex flex-col gap-4  md:border-2  border-primary dark:border-primaryDark rounded-lg md:mt-16 mt-9 md:w-[45%] md:mx-auto md:px-4 py-6  ">
       <div className="flex flex-col gap-0.5 items-center">
-        <h1 className=" text-3xl font-semibold font-popins">Register</h1>
+        <h1 className=" text-3xl font-semibold font-popins">Sign up</h1>
         <p className="text-sm  opacity-70">Create your account today</p>
       </div>
 
