@@ -3,8 +3,8 @@ import { Link, useNavigate } from "react-router-dom"
 import { UserContext } from "./context/UserContext"
 import { TfiWrite } from "react-icons/tfi"
 import { ImSearch } from "react-icons/im"
-import { HiMenu } from "react-icons/hi"
 import ThemeButton from "./ThemeButton"
+import { FiLogOut } from "react-icons/fi"
 
 const Header = () => {
   const { userInfo, setUserInfo } = useContext(UserContext)
@@ -38,16 +38,26 @@ const Header = () => {
     }
   }, [userInfo])
 
-  async function logout() {
-    await fetch(`${import.meta.env.VITE_APP_URL}/logout`, {
-      credentials: "include",
-      method: "POST",
-    })
-    setUserInfo(null)
-    navigate("/")
+  const logout = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_APP_URL}/logout`, {
+        credentials: "include",
+        method: "POST",
+      })
+
+      if (response.ok) {
+        setUserInfo(null)
+        navigate("/")
+      } else {
+        console.error("Logout failed")
+      }
+    } catch (error) {
+      console.error("Logout error:", error)
+    }
   }
 
-  const username = userInfo?.username || ""
+  const username = userInfo?.username
+  const fullname = userInfo?.fullName
 
   return (
     <section className=" fixed top-0 w-full bg-mainWhite/60 dark:bg-mainBlack/60 backdrop-blur-lg z-50 select-none  ">
@@ -78,7 +88,7 @@ const Header = () => {
           </Link>
           <ThemeButton />
           {username ? (
-            <nav className=" flex gap-2 items-center">
+            <nav className=" flex gap-3 items-center">
               <Link
                 to="/create"
                 className="  border-2  border-mainBlack flex gap-1 items-center  rounded-lg bg-mainBlack px-2 text-mainWhite dark:text-mainBlack  py-1  font-semibold  font-sans dark:bg-mainWhite dark:border-mainWhite"
@@ -87,12 +97,20 @@ const Header = () => {
                 Write
               </Link>
 
-              <a
-                onClick={logout}
-                className=" hidden md:block border-2 cursor-pointer border-mainBlack dark:border-mainWhite rounded-lg  px-2 py-1 font-semibold font-sans hover:bg-mainBlack dark:hover:bg-mainWhite hover:text-mainWhite dark:hover:text-mainBlack   "
+              <div
+                onClick={() => setVis(!vis)}
+                className=" cursor-pointer md:hover:brightness-75 transition-all "
               >
-                Logout
-              </a>
+                <img
+                  src=""
+                  alt="profile"
+                  className="  rounded-full object-cover size-9"
+                  onError={(e) => {
+                    e.target.src =
+                      "https://i.pinimg.com/736x/d9/d8/8e/d9d88e3d1f74e2b8ced3df051cecb81d.jpg"
+                  }}
+                />
+              </div>
             </nav>
           ) : (
             <nav className=" flex gap-2 items-center">
@@ -106,44 +124,44 @@ const Header = () => {
                 to="/register"
                 className=" hidden md:block border-2 cursor-pointer border-mainBlack dark:border-mainWhite rounded-lg  px-2 py-1 font-semibold font-sans hover:bg-mainBlack dark:hover:bg-mainWhite hover:text-mainWhite dark:hover:text-mainBlack "
               >
-                Sign up
+                Signup
               </Link>
             </nav>
           )}
-          <div onClick={() => setVis(!vis)} className=" md:hidden  text-3xl ">
-            <HiMenu />
-          </div>
         </div>
       </div>
       {vis && (
-        <div className=" md:hidden absolute my-1 border w-fit flex flex-col gap-1.5 p-3 right-2 bg-mainWhite dark:bg-mainBlack  z-50 rounded-lg border-primary dark:border-primaryDark ">
-          <Link
-            to="/"
-            onClick={() => setVis(false)}
-            className="  font-popins font-medium text-center "
-          >
-            About
+        <div className=" absolute my-2 border w-fit flex flex-col md:gap-2 gap-1 p-3 md:right-6 right-4 bg-gray-100 dark:bg-zinc-900  z-50 rounded-lg border-primary dark:border-primaryDark md:min-w-[270px]">
+          <Link className=" md:dark:hover:bg-primaryDark md:hover:bg-primary/55 transition-all rounded-lg p-2.5 ">
+            <div className=" flex gap-2.5 items-center">
+              <img
+                src=""
+                alt="profile"
+                className="  rounded-full object-cover size-11"
+                onError={(e) => {
+                  e.target.src =
+                    "https://i.pinimg.com/736x/d9/d8/8e/d9d88e3d1f74e2b8ced3df051cecb81d.jpg"
+                }}
+              />
+              <div className=" flex flex-col ">
+                <span className=" font-semibold">{fullname}</span>
+                <span className=" text-sm text-zinc-500">@{username}</span>
+              </div>
+            </div>
           </Link>
+
           <div className=" border-b  border-primary dark:border-primaryDark " />
-          {username ? (
-            <a
-              onClick={() => {
-                logout()
-                setVis(false)
-              }}
-              className="  font-popins font-medium text-center "
-            >
-              Logout
-            </a>
-          ) : (
-            <Link
-              to="/register"
-              onClick={() => setVis(false)}
-              className="  font-popins font-medium text-center "
-            >
-              Register
-            </Link>
-          )}
+
+          <button
+            onClick={async () => {
+              await logout()
+              setVis(false)
+            }}
+            className=" flex gap-1 text-red-400 items-center font-popins  font-medium p-2.5 md:hover:bg-primary/55 transition-all rounded-lg  md:dark:hover:bg-primaryDark cursor-pointer"
+          >
+            <FiLogOut />
+            Logout
+          </button>
         </div>
       )}
     </section>
