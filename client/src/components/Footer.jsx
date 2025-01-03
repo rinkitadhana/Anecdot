@@ -31,13 +31,14 @@ const Footer = () => {
   ]
   return (
     <footer className=" select-none flex flex-col gap-1 items-center justify-centers py-8">
+      <div className=" border-b my-4 w-[95%] border-primary dark:border-primaryDark" />
       <div className="flex flex-wrap gap-5 md:gap-4 items-center">
         {links.map((link) => (
           <a
             href={link.link}
             key={link.id}
             target="_blank"
-            className=" font-medium text-xl md:text-base  md:hover:text-mainBlack/65 md:dark:hover:text-mainWhite/65 flex flex-row gap-0.5 items-center"
+            className=" font-medium text-xl md:text-base  md:hover:text-mainBlack/65 md:dark:hover:text-mainWhite/65 flex flex-row gap-1 items-center"
           >
             {link.icon}
             <span className=" hidden md:block"> {link.name}</span>
