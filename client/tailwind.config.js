@@ -5,7 +5,6 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        popins: ["Poppins", "serif"],
         SegoeUI: ["SegoeUI", "serif"],
         Inter: ["Inter", "serif"],
       },
