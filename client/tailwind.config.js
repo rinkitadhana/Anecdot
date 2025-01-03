@@ -7,6 +7,7 @@ export default {
       fontFamily: {
         popins: ["Poppins", "serif"],
         SegoeUI: ["SegoeUI", "serif"],
+        Inter: ["Inter", "serif"],
       },
       colors: {
         mainBlack: "#1a1c1e",
