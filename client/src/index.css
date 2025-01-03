@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "SegoeUI";
+  src: url("./fonts/Segoe UI.ttf");
+}
 .screen {
-  @apply md:max-w-[1000px] md:mx-auto mx-2 font-popins pt-20;
+  @apply md:max-w-[1000px] md:mx-auto mx-2 font-SegoeUI pt-20;
 }
 
 .image {
