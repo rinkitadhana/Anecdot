@@ -10,7 +10,7 @@ const ThemeButton = () => {
       onClick={() =>
         setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"))
       }
-      className=" p-2 rounded-lg cursor-pointer border-2 md:hover:border-mainBlack  bg-primary dark:bg-primaryDark border-primary dark:border-primaryDark md:dark:hover:bg-mainWhite md:dark:hover:border-mainWhite md:hover:bg-mainBlack md:hover:text-mainWhite md:dark:hover:text-mainBlack transition-all "
+      className=" p-2 rounded-md cursor-pointer bg-primary dark:bg-primaryDark   md:dark:hover:bg-mainWhite md:dark:hover:border-mainWhite md:hover:bg-mainBlack md:hover:text-mainWhite md:dark:hover:text-mainBlack transition "
     >
       {theme ? <IoSunnySharp /> : <FaMoon />}
     </div>
