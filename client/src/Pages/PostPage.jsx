@@ -130,7 +130,7 @@ const PostPage = () => {
           </div>
 
           <div
-            className=" font-popins  md:text-lg "
+            className="  md:text-lg "
             dangerouslySetInnerHTML={{
               __html: postInfo?.content || "Error : Something went wrong!",
             }}

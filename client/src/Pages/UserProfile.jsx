@@ -67,7 +67,7 @@ const UserProfile = () => {
           </div>
         </div>
         <div className="flex flex-col gap-2">
-          <h1 className="text-xl font-medium">Posts</h1>
+          <h1 className="text-xl font-semibold">Posts</h1>
           <div className=" border-b border-primary dark:border-primaryDark" />
           <div>
             <PostLoading />

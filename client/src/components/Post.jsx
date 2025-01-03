@@ -42,7 +42,7 @@ const Post = ({ _id, title, summary, cover, createdAt, author }) => {
               {format(new Date(createdAt), "dd MMM, yyy")}
             </time>
           </div>
-          <p className=" opacity-90">{newSummary}</p>
+          <p className=" opacity-80">{newSummary}</p>
         </div>
       </div>
     </Link>
