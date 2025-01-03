@@ -6,6 +6,7 @@ export default {
     extend: {
       fontFamily: {
         popins: ["Poppins", "serif"],
+        SegoeUI: ["SegoeUI", "serif"],
       },
       colors: {
         mainBlack: "#1a1c1e",
