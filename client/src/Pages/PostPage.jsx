@@ -119,7 +119,7 @@ const PostPage = () => {
 
           <div>
             <img
-              className=" w-full object-cover rounded-xl h-full"
+              className=" w-full object-cover rounded-md h-full"
               src={`${import.meta.env.VITE_APP_URL}/${postInfo?.cover}`}
               alt="cover"
               onError={(e) => {
