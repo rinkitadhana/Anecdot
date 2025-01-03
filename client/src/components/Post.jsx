@@ -20,7 +20,7 @@ const Post = ({ _id, title, summary, cover, createdAt, author }) => {
 
   return (
     <Link to={`/post/${_id}`}>
-      <div className=" break-all flex md:flex-row flex-col md:gap-4 gap-2 p-2 hover:bg-primary dark:hover:bg-primaryDark  cursor-pointer rounded-xl transition-all">
+      <div className="flex md:flex-row flex-col md:gap-4 gap-2 p-2 hover:bg-primary dark:hover:bg-primaryDark  cursor-pointer rounded-md transition-all">
         <div className=" basis-2/5 ">
           <img
             className="image"
@@ -33,7 +33,7 @@ const Post = ({ _id, title, summary, cover, createdAt, author }) => {
         </div>
 
         <div className="basis-3/5 flex flex-col gap-0.5">
-          <h1 className="text-2xl font-semibold ">{newTitle}</h1>
+          <h1 className="text-2xl font-bold ">{newTitle}</h1>
           <div className="flex gap-3 items-center">
             <a className=" font-semibold opacity-80 hover:underline hover:opacity-100 cursor-pointer ">
               {author?.fullName || "Anonymous"}
