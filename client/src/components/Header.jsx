@@ -61,10 +61,10 @@ const Header = () => {
   const fullname = userInfo?.fullName
 
   return (
-    <section className=" fixed top-0 w-full bg-mainWhite/60 dark:bg-mainBlack/60 backdrop-blur-lg z-50 select-none  ">
+    <section className=" fixed top-0 w-full bg-mainWhite/60 dark:bg-mainBlack/60 backdrop-blur-lg z-50 select-none font-Inter  ">
       <div className="flex  justify-between items-center border-b border-primary dark:border-primaryDark   py-2.5 md:px-8 px-4  ">
         <div className=" flex gap-10 items-center">
-          <Link to="/" className=" text-2xl font-semibold font-popins ">
+          <Link to="/" className=" text-2xl font-bold ">
             Anecdot.
           </Link>
           <div className="hidden">
@@ -81,18 +81,18 @@ const Header = () => {
           </div>
         </div>
         <div className=" flex gap-3 items-center transition-none">
-          <Link
+          {/* <Link
             to="/"
             className=" hidden md:block font-semibold bg-primary dark:bg-primaryDark  rounded-lg px-2 py-1.5 transition-none "
           >
             About
-          </Link>
+          </Link> */}
           <ThemeButton />
           {username ? (
             <nav className=" flex gap-3 items-center">
               <Link
                 to="/create"
-                className="  border-2  border-mainBlack flex gap-1 items-center  rounded-lg bg-mainBlack px-2 text-mainWhite dark:text-mainBlack  py-1  font-semibold  font-sans dark:bg-mainWhite dark:border-mainWhite"
+                className=" flex gap-1 items-center  rounded-lg bg-mainBlack px-2 text-mainWhite dark:text-mainBlack  py-1  font-semibold  dark:bg-mainWhite dark:border-mainWhite"
               >
                 <TfiWrite className=" text-sm" />
                 Write
@@ -117,13 +117,13 @@ const Header = () => {
             <nav className=" flex gap-2 items-center">
               <Link
                 to="/login"
-                className="  border-2  border-mainBlack flex gap-1 items-center  rounded-lg bg-mainBlack px-2 text-mainWhite dark:text-mainBlack py-1  font-semibold  font-sans dark:bg-mainWhite dark:border-mainWhite"
+                className=" flex gap-1 items-center  rounded-lg bg-mainBlack px-2 text-mainWhite dark:text-mainBlack py-1  font-semibold   dark:bg-mainWhite dark:border-mainWhite"
               >
                 Login
               </Link>
               <Link
                 to="/register"
-                className=" hidden md:block border-2 cursor-pointer border-mainBlack dark:border-mainWhite rounded-lg  px-2 py-1 font-semibold font-sans hover:bg-mainBlack dark:hover:bg-mainWhite hover:text-mainWhite dark:hover:text-mainBlack "
+                className="  hidden md:block bg-primary dark:bg-primaryDark cursor-pointer   rounded-lg  px-2 py-1 font-semibold  hover:bg-mainBlack dark:hover:bg-mainWhite hover:text-mainWhite dark:hover:text-mainBlack transition "
               >
                 Signup
               </Link>
