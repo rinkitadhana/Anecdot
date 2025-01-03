@@ -132,7 +132,7 @@ const Header = () => {
         </div>
       </div>
       {vis && (
-        <div className=" absolute my-2 border w-fit flex flex-col md:gap-2 gap-1 md:p-3 p-1 md:right-6 right-4 bg-gray-100 dark:bg-zinc-900  z-50 rounded-md border-primary dark:border-primaryDark md:min-w-[270px]">
+        <div className="  absolute my-2 border w-fit flex flex-col md:gap-2 gap-1 md:p-3 p-1 md:right-6 right-4 bg-mainWhite  dark:bg-zinc-900  z-50 rounded-md border-primary dark:border-primaryDark md:min-w-[270px]">
           <Link
             to={`/user/${userInfo?.id || "404"}`}
             onClick={() => setVis(false)}
