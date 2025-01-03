@@ -16,7 +16,7 @@ const UserProfile = () => {
             <img
               src=""
               alt="Cover"
-              className="w-full object-cover md:h-52 h-32 rounded-lg"
+              className="w-full object-cover md:h-52 h-32 rounded-md"
               onError={(e) =>
                 (e.target.src =
                   "https://i.pinimg.com/736x/86/f4/63/86f463995f71aa9c87dd934ca927ef24.jpg")
@@ -37,7 +37,7 @@ const UserProfile = () => {
           </div>
         </div>
         <div className=" flex justify-end  w-full  px-2 ">
-          <button className=" font-sans font-medium  rounded-lg px-2 py-2 md:hover:bg-mainBlack md:hover:text-mainWhite md:dark:hover:text-mainBlack  dark:md:hover:bg-mainWhite transition-all bg-primary dark:bg-primaryDark">
+          <button className=" font-sans font-medium  rounded-md px-2 py-2 md:hover:bg-mainBlack md:hover:text-mainWhite md:dark:hover:text-mainBlack  dark:md:hover:bg-mainWhite transition-all bg-primary dark:bg-primaryDark">
             Edit Profile
           </button>
         </div>

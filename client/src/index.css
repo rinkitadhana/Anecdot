@@ -16,16 +16,16 @@
 
 /* FORM */
 .input {
-  @apply px-2 py-1 w-full border-2 rounded-lg bg-mainWhite dark:bg-mainBlack   border-zinc-400 dark:border-zinc-500;
+  @apply px-2 py-1 w-full border-2 rounded-md bg-mainWhite dark:bg-mainBlack   border-zinc-400 dark:border-zinc-500;
 }
 .post-input {
   @apply px-2 py-1 w-full md:text-xl text-lg  border-zinc-400 bg-mainWhite dark:bg-mainBlack  focus:border-zinc-600 outline-none;
 }
 .btn {
-  @apply w-full border-2 border-mainBlack  dark:border-mainWhite md:dark:hover:bg-mainWhite md:dark:hover:text-mainBlack rounded-lg py-1 md:hover:bg-mainBlack md:hover:text-mainWhite font-semibold transition-all font-sans flex justify-center items-center;
+  @apply w-full border-2 border-mainBlack  dark:border-mainWhite md:dark:hover:bg-mainWhite md:dark:hover:text-mainBlack rounded-md py-1 md:hover:bg-mainBlack md:hover:text-mainWhite font-semibold transition-all font-sans flex justify-center items-center;
 }
 .create-btn {
-  @apply md:w-fit  px-2 py-1  border-2 mx-auto border-zinc-800 rounded-lg   transition-all  w-full    dark:border-mainWhite md:dark:hover:bg-mainWhite md:dark:hover:text-mainBlack  md:hover:bg-mainBlack md:hover:text-mainWhite font-semibold  font-sans flex justify-center items-center;
+  @apply md:w-fit  px-2 py-1  border-2 mx-auto border-zinc-800 rounded-md   transition-all  w-full    dark:border-mainWhite md:dark:hover:bg-mainWhite md:dark:hover:text-mainBlack  md:hover:bg-mainBlack md:hover:text-mainWhite font-semibold  font-sans flex justify-center items-center;
 }
 .lnk {
   @apply text-blue-600 md:hover:text-blue-400 md:hover:underline;

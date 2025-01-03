@@ -10,7 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         custom:
-          "text-xl border-2 border-red-400 px-2 py-1 rounded-lg font-semibold font-sans flex  md:hover:bg-red-400 md:hover:border-red-400 transition-all text-red-400 md:hover:text-white items-center",
+          "text-xl border-2 border-red-400 px-2 py-1 rounded-md font-semibold font-sans flex  md:hover:bg-red-400 md:hover:border-red-400 transition-all text-red-400 md:hover:text-white items-center",
         default:
           "bg-zinc-900 text-zinc-50 shadow hover:bg-zinc-900/90 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/90",
         destructive:

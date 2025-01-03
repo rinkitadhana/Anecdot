@@ -79,7 +79,7 @@ const PostPage = () => {
           {userInfo?.id === postInfo?.author?._id && (
             <div className="flex gap-2 justify-center">
               <Link
-                className=" border-2 border-mainBlack dark:border-mainWhite px-2 py-1 rounded-lg font-semibold font-sans flex  md:hover:bg-mainBlack md:dark:hover:bg-mainWhite  transition-all md:hover:text-mainWhite md:dark:hover:text-mainBlack items-center gap-1"
+                className=" border-2 border-mainBlack dark:border-mainWhite px-2 py-1 rounded-md font-semibold font-sans flex  md:hover:bg-mainBlack md:dark:hover:bg-mainWhite  transition-all md:hover:text-mainWhite md:dark:hover:text-mainBlack items-center gap-1"
                 to={`/edit/${postInfo?._id}`}
               >
                 <TfiWrite />

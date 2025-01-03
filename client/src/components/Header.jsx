@@ -72,7 +72,7 @@ const Header = () => {
               <input
                 placeholder="Search your Interest..."
                 type="search"
-                className=" bg-zinc-200 rounded-md font-popins px-3 py-2 "
+                className=" bg-zinc-200 rounded-md px-3 py-2 "
               />
               <a className=" cursor-pointer bg-zinc-200 border-2 border-zinc-200 hover:border-black hover:bg-black transition-colors  text-lg text-zinc-800 rounded-md p-2 hover:text-white">
                 <ImSearch />
@@ -162,7 +162,7 @@ const Header = () => {
               await logout()
               setVis(false)
             }}
-            className=" flex gap-1 text-red-400 items-center font-popins  font-medium p-2.5 md:hover:bg-primary/55 transition-all rounded-md  md:dark:hover:bg-primaryDark cursor-pointer"
+            className=" flex gap-1 text-red-400 items-center   font-medium p-2.5 md:hover:bg-primary/55 transition-all rounded-md  md:dark:hover:bg-primaryDark cursor-pointer"
           >
             <FiLogOut />
             Logout

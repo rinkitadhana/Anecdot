@@ -41,7 +41,7 @@ const Login = () => {
   }
 
   return (
-    <section className="flex flex-col gap-4  md:border-2 border-primary dark:border-primaryDark rounded-lg md:mt-16 mt-9 md:w-[45%] md:mx-auto md:px-4 py-6">
+    <section className="flex flex-col gap-4  md:border-2 border-primary dark:border-primaryDark rounded-md md:mt-16 mt-9 md:w-[45%] md:mx-auto md:px-4 py-6">
       <div className="flex flex-col gap-0.5 items-center">
         <h1 className=" text-3xl font-semibold font-popins">LogIn</h1>
         <p className="text-sm  opacity-70">Enter your credentials here</p>

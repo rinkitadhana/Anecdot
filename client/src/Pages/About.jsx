@@ -91,7 +91,7 @@ const About = () => {
           <a
             target="_blank"
             href="https://github.com/rinkitadhana/Anecdot-Blog-Application"
-            className=" border-2 w-fit rounded-lg border-black py-1 px-2 text-black flex gap-1 items-center font-medium cursor-pointer  transition-all hover:bg-black hover:text-white "
+            className=" border-2 w-fit rounded-md border-black py-1 px-2 text-black flex gap-1 items-center font-medium cursor-pointer  transition-all hover:bg-black hover:text-white "
           >
             <FiGithub className=" size-5" />
             Github
@@ -116,7 +116,7 @@ const About = () => {
                 {client.map((client) => (
                   <div
                     key={client.name}
-                    className=" bg-zinc-200 font-medium px-2 py-0.5 rounded-lg hover:bg-zinc-300 transition-all cursor-pointer "
+                    className=" bg-zinc-200 font-medium px-2 py-0.5 rounded-md hover:bg-zinc-300 transition-all cursor-pointer "
                   >
                     {client.name}
                   </div>
@@ -137,7 +137,7 @@ const About = () => {
                 {server.map((server) => (
                   <div
                     key={server.name}
-                    className=" bg-zinc-200 font-medium px-2 py-0.5 rounded-lg hover:bg-zinc-300 transition-all cursor-pointer "
+                    className=" bg-zinc-200 font-medium px-2 py-0.5 rounded-md hover:bg-zinc-300 transition-all cursor-pointer "
                   >
                     {server.name}
                   </div>
