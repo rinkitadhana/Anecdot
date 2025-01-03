@@ -164,10 +164,8 @@ app.delete("/post/:id", async (req, res) => {
 
 app.get("/post", async (req, res) => {
   res.json(
-    await Post.find()
-      .populate("author", ["fullName"])
-      .sort({ createdAt: -1 })
-      .limit(20)
+    await Post.find().populate("author", ["fullName"]).sort({ createdAt: -1 })
+    // .limit(20)
   )
 })
 
