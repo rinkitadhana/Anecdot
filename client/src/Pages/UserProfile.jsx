@@ -1,5 +1,4 @@
 import { useContext } from "react"
-import Back from "../components/Back"
 import { RiLinkM } from "react-icons/ri"
 import { UserContext } from "../components/context/UserContext"
 import { CgCalendarDates } from "react-icons/cg"
@@ -11,7 +10,6 @@ const UserProfile = () => {
   const fullName = userInfo?.fullName
   return (
     <section>
-      <Back path="/" />
       <div className="  flex flex-col gap-3 my-5">
         <div className="  w-full md:h-52 h-30  ">
           <div className="relative md:h-48 h-32  ">

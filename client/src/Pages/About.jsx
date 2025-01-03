@@ -1,4 +1,3 @@
-import Back from "../components/Back"
 import { IoPlay } from "react-icons/io5"
 import { useState } from "react"
 import { FiGithub } from "react-icons/fi"
@@ -76,9 +75,7 @@ const About = () => {
 
   return (
     <section className="md:px-0 px-2">
-      <div className=" flex justify-between items-center">
-        <Back path="/" />
-      </div>
+      <div className=" flex justify-between items-center"></div>
       <section className="flex flex-col gap-4 my-6 ">
         <div className=" flex flex-col gap-4 items-center">
           <img

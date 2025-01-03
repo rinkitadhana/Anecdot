@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react"
 import { Link, Navigate, useParams } from "react-router-dom"
 import { FaUserCircle } from "react-icons/fa"
 import { format } from "date-fns"
-import Back from "../components/Back"
 import { TfiWrite } from "react-icons/tfi"
 import PostPageLoading from "../components/PostPageLoading"
 import { MdDelete } from "react-icons/md"
@@ -57,8 +56,6 @@ const PostPage = () => {
         <PostPageLoading />
       ) : (
         <section className=" break-all flex flex-col md:gap-4 gap-4 mx-2 ">
-          <Back path="/" />
-
           <h1 className=" md:text-4xl text-xl font-semibold text-center">
             {postInfo?.title || "Error : Something went wrong!"}
           </h1>
@@ -138,7 +135,6 @@ const PostPage = () => {
               __html: postInfo?.content || "Error : Something went wrong!",
             }}
           ></div>
-          <Back path="/" />
         </section>
       )}
     </section>

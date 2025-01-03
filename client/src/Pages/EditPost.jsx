@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import ReactQuill from "react-quill"
 import "react-quill/dist/quill.snow.css"
 import { Navigate, useParams } from "react-router-dom"
-import Back from "../components/Back"
 import { FaSpinner } from "react-icons/fa6"
 
 const modules = {
@@ -89,7 +88,6 @@ const CreatePost = () => {
 
   return (
     <section className=" mx-2 flex  flex-col md:gap-6 gap-4">
-      <Back path={`/post/${id}`} />
       <h1 className=" text-2xl font-semibold font-popins">
         Revise, update, and make it yours again.
       </h1>
