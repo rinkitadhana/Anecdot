@@ -11,8 +11,8 @@ export default {
       },
       colors: {
         mainBlack: "#1a1c1e",
-        mainWhite: "#e1e3e5",
-        primary: "#CCCED1",
+        mainWhite: "#FFFFFF",
+        primary: "#eeeeee",
         primaryDark: "#303234",
       },
       borderRadius: {
