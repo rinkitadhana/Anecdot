@@ -61,7 +61,7 @@ const Header = () => {
   const fullname = userInfo?.fullName
 
   return (
-    <section className=" fixed top-0 w-full bg-mainWhite/60 dark:bg-mainBlack/60 backdrop-blur-lg z-50 select-none font-Inter  ">
+    <section className=" fixed top-0 w-full bg-mainWhite/50 dark:bg-mainBlack/50 backdrop-blur-md z-50 select-none font-Inter  ">
       <div className="flex  justify-between items-center border-b border-primary dark:border-primaryDark   py-2.5 md:px-8 px-4  ">
         <div className=" flex gap-10 items-center">
           <Link to="/" className=" text-2xl font-bold ">
@@ -72,9 +72,9 @@ const Header = () => {
               <input
                 placeholder="Search your Interest..."
                 type="search"
-                className=" bg-zinc-200 rounded-lg font-popins px-3 py-2 "
+                className=" bg-zinc-200 rounded-md font-popins px-3 py-2 "
               />
-              <a className=" cursor-pointer bg-zinc-200 border-2 border-zinc-200 hover:border-black hover:bg-black transition-colors  text-lg text-zinc-800 rounded-lg p-2 hover:text-white">
+              <a className=" cursor-pointer bg-zinc-200 border-2 border-zinc-200 hover:border-black hover:bg-black transition-colors  text-lg text-zinc-800 rounded-md p-2 hover:text-white">
                 <ImSearch />
               </a>
             </div>
@@ -83,7 +83,7 @@ const Header = () => {
         <div className=" flex gap-3 items-center transition-none">
           {/* <Link
             to="/"
-            className=" hidden md:block font-semibold bg-primary dark:bg-primaryDark  rounded-lg px-2 py-1.5 transition-none "
+            className=" hidden md:block font-semibold bg-primary dark:bg-primaryDark  rounded-md px-2 py-1.5 transition-none "
           >
             About
           </Link> */}
@@ -92,7 +92,7 @@ const Header = () => {
             <nav className=" flex gap-3 items-center">
               <Link
                 to="/create"
-                className=" flex gap-1 items-center  rounded-lg bg-mainBlack px-2 text-mainWhite dark:text-mainBlack  py-1  font-semibold  dark:bg-mainWhite dark:border-mainWhite"
+                className=" flex gap-1 items-center  rounded-md bg-mainBlack px-2 text-mainWhite dark:text-mainBlack  py-1  font-semibold  dark:bg-mainWhite dark:border-mainWhite"
               >
                 <TfiWrite className=" text-sm" />
                 Write
@@ -117,13 +117,13 @@ const Header = () => {
             <nav className=" flex gap-2 items-center">
               <Link
                 to="/login"
-                className=" flex gap-1 items-center  rounded-lg bg-mainBlack px-2 text-mainWhite dark:text-mainBlack py-1  font-semibold   dark:bg-mainWhite dark:border-mainWhite"
+                className=" flex gap-1 items-center  rounded-md bg-mainBlack px-2 text-mainWhite dark:text-mainBlack py-1  font-semibold   dark:bg-mainWhite dark:border-mainWhite"
               >
                 Login
               </Link>
               <Link
                 to="/register"
-                className="  hidden md:block bg-primary dark:bg-primaryDark cursor-pointer   rounded-lg  px-2 py-1 font-semibold  hover:bg-mainBlack dark:hover:bg-mainWhite hover:text-mainWhite dark:hover:text-mainBlack transition "
+                className="  hidden md:block bg-primary dark:bg-primaryDark cursor-pointer   rounded-md  px-2 py-1 font-semibold  hover:bg-mainBlack dark:hover:bg-mainWhite hover:text-mainWhite dark:hover:text-mainBlack transition "
               >
                 Signup
               </Link>
@@ -132,11 +132,11 @@ const Header = () => {
         </div>
       </div>
       {vis && (
-        <div className=" absolute my-2 border w-fit flex flex-col md:gap-2 gap-1 md:p-3 p-1 md:right-6 right-4 bg-gray-100 dark:bg-zinc-900  z-50 rounded-lg border-primary dark:border-primaryDark md:min-w-[270px]">
+        <div className=" absolute my-2 border w-fit flex flex-col md:gap-2 gap-1 md:p-3 p-1 md:right-6 right-4 bg-gray-100 dark:bg-zinc-900  z-50 rounded-md border-primary dark:border-primaryDark md:min-w-[270px]">
           <Link
             to={`/user/${userInfo?.id || "404"}`}
             onClick={() => setVis(false)}
-            className=" md:dark:hover:bg-primaryDark md:hover:bg-primary/55 transition-all rounded-lg p-2.5 "
+            className=" md:dark:hover:bg-primaryDark md:hover:bg-primary/55 transition-all rounded-md p-2.5 "
           >
             <div className=" flex gap-2.5 items-center">
               <img
@@ -162,7 +162,7 @@ const Header = () => {
               await logout()
               setVis(false)
             }}
-            className=" flex gap-1 text-red-400 items-center font-popins  font-medium p-2.5 md:hover:bg-primary/55 transition-all rounded-lg  md:dark:hover:bg-primaryDark cursor-pointer"
+            className=" flex gap-1 text-red-400 items-center font-popins  font-medium p-2.5 md:hover:bg-primary/55 transition-all rounded-md  md:dark:hover:bg-primaryDark cursor-pointer"
           >
             <FiLogOut />
             Logout
