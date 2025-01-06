@@ -60,31 +60,44 @@ app.post("/register", async (req, res) => {
     res.status(400).json(err)
   }
 })
-app.post("/login", async (req, res) => {
-  const { username, password } = req.body
-  const userDoc = await User.findOne({ username })
-  if (!userDoc) return res.status(400).json("Wrong Username!")
 
-  const passOk = bcrypt.compareSync(password, userDoc.password)
-  if (passOk) {
-    jwt.sign(
-      { username, fullName: userDoc.fullName, id: userDoc._id },
-      process.env.SECRET_KEY,
-      {},
-      (err, token) => {
-        if (err) throw err
-        res
-          .cookie("token", token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production", // Only use secure in production
-            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-            maxAge: 24 * 60 * 60 * 1000, // 24 hours
-          })
-          .json("Logged in Successfully")
-      }
-    )
-  } else {
-    return res.status(400).json("Wrong Password!")
+app.post("/login", async (req, res) => {
+  try {
+    const { username, password } = req.body
+    if (!username || !password) {
+      return res.status(400).json("Username and password are required")
+    }
+
+    const userDoc = await User.findOne({ username })
+    if (!userDoc) return res.status(400).json("Wrong Username!")
+
+    const passOk = bcrypt.compareSync(password, userDoc.password)
+    if (passOk) {
+      jwt.sign(
+        { username, fullName: userDoc.fullName, id: userDoc._id },
+        process.env.SECRET_KEY,
+        {},
+        (err, token) => {
+          if (err) {
+            console.error("JWT Sign Error:", err)
+            return res.status(500).json("Error creating login token")
+          }
+          res
+            .cookie("token", token, {
+              httpOnly: true,
+              secure: process.env.NODE_ENV === "production",
+              sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+              maxAge: 24 * 60 * 60 * 1000,
+            })
+            .json("Logged in Successfully")
+        }
+      )
+    } else {
+      return res.status(400).json("Wrong Password!")
+    }
+  } catch (err) {
+    console.error("Login Error:", err)
+    res.status(500).json("Internal server error during login")
   }
 })
 
