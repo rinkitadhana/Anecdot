@@ -20,7 +20,6 @@ const PostPageLoading = () => {
         <Skeleton className="w-full h-[100px] rounded-md" />
         <Skeleton className="w-full h-[100px] rounded-md" />
       </div>
-      <Skeleton className="w-[60px] h-[20px] rounded-md" />
     </section>
   )
 }
