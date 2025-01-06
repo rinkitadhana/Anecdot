@@ -102,12 +102,21 @@ app.post("/login", async (req, res) => {
 })
 
 app.get("/profile", (req, res) => {
-  const { token } = req.cookies
-  if (!token) return res.json({ message: "NOT LOGIN" })
-  jwt.verify(token, process.env.SECRET_KEY, {}, (err, info) => {
-    if (err) throw err
-    res.json(info)
-  })
+  try {
+    const { token } = req.cookies
+    if (!token) return res.status(401).json({ message: "NOT LOGIN" })
+
+    jwt.verify(token, process.env.SECRET_KEY, {}, (err, info) => {
+      if (err) {
+        console.error("Token Verification Error:", err)
+        return res.status(401).json({ message: "Invalid token" })
+      }
+      res.json(info)
+    })
+  } catch (err) {
+    console.error("Profile Error:", err)
+    res.status(500).json({ message: "Error checking profile" })
+  }
 })
 
 app.post("/logout", (req, res) => {
