@@ -60,7 +60,6 @@ app.post("/register", async (req, res) => {
     res.status(400).json(err)
   }
 })
-
 app.post("/login", async (req, res) => {
   const { username, password } = req.body
   const userDoc = await User.findOne({ username })
@@ -74,7 +73,14 @@ app.post("/login", async (req, res) => {
       {},
       (err, token) => {
         if (err) throw err
-        res.cookie("token", token).json("Logged in Successfully")
+        res
+          .cookie("token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production", // Only use secure in production
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+            maxAge: 24 * 60 * 60 * 1000, // 24 hours
+          })
+          .json("Logged in Successfully")
       }
     )
   } else {
