@@ -17,7 +17,15 @@ dotenv.config({ path: "../.env" })
 const app = express()
 const PORT = process.env.PORT || 4000
 const salt = bcrypt.genSaltSync(10)
-app.use(cors({ credentials: true, origin: process.env.ORIGIN }))
+app.use(
+  cors({
+    credentials: true,
+    origin: process.env.ORIGIN,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    exposedHeaders: ["set-cookie"],
+  })
+)
 app.use(express.json())
 app.use(cookieParser())
 const __filename = fileURLToPath(import.meta.url)
