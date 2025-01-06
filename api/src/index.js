@@ -193,6 +193,11 @@ app.delete("/post/:id", async (req, res) => {
     if (!isAuthor) {
       return res.status(400).json("You are not the author")
     }
+    if (postDoc.cover) {
+      const path = postDoc.cover.split("/").pop()
+      const fullPath = path.join(__dirname, "..", "uploads", path)
+      fs.unlinkSync(fullPath)
+    }
     await Post.findByIdAndDelete(id)
     res.json({ message: "Post deleted successfully" })
   })
