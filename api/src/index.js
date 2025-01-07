@@ -120,7 +120,19 @@ app.get("/profile", (req, res) => {
 })
 
 app.post("/logout", (req, res) => {
-  res.cookie("token", "").json({ message: "OK" })
+  try {
+    res
+      .cookie("token", "", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+        expires: new Date(0),
+      })
+      .json({ message: "Logged out successfully" })
+  } catch (err) {
+    console.error("Logout Error:", err)
+    res.status(500).json({ message: "Error during logout" })
+  }
 })
 
 app.post("/post", uploadMiddleware.single("file"), async (req, res) => {

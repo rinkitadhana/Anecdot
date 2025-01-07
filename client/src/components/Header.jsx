@@ -42,8 +42,10 @@ const Header = () => {
     try {
       const response = await fetch(`${import.meta.env.VITE_APP_URL}/logout`, {
         credentials: "include",
-
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
 
       if (response.ok) {
