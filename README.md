@@ -1,4 +1,4 @@
-Anecdot
+# Anecdot
 
 A modern blogging platform with user authentication, profile management, and theme customization.
 
