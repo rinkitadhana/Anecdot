@@ -55,7 +55,7 @@ const PostPage = () => {
       {loading ? (
         <PostPageLoading />
       ) : (
-        <section className=" break-all flex flex-col md:gap-4 gap-4 mx-2 ">
+        <section className="  flex flex-col md:gap-4 gap-4 mx-2 ">
           <h1 className=" md:text-4xl text-xl font-semibold text-center">
             {postInfo?.title || "Error : Something went wrong!"}
           </h1>
