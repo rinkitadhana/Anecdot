@@ -35,9 +35,9 @@ const Post = ({ _id, title, summary, cover, createdAt, author }) => {
         <div className="basis-3/5 flex flex-col gap-0.5">
           <h1 className="text-2xl font-bold ">{newTitle}</h1>
           <div className="flex gap-3 items-center">
-            <a className=" font-semibold opacity-80 hover:underline hover:opacity-100 cursor-pointer ">
+            <p className=" font-semibold opacity-80  ">
               {author?.fullName || "Anonymous"}
-            </a>
+            </p>
             <time className=" opacity-70 text-sm font-medium">
               {format(new Date(createdAt), "dd MMM, yyy")}
             </time>

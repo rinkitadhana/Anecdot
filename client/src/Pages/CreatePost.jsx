@@ -71,7 +71,7 @@ const CreatePost = () => {
   }
 
   return (
-    <section className=" mx-2 flex  flex-col md:gap-6 gap-4">
+    <section className=" mx-2 flex   flex-col md:gap-6 gap-4">
       <h1 className=" text-2xl font-semibold font-popins">
         What’s on Your Mind Today?
       </h1>
