@@ -51,7 +51,7 @@ const PostPage = () => {
   }
 
   return (
-    <section className=" min-h-screen">
+    <section className=" py-5 min-h-screen">
       {loading ? (
         <PostPageLoading />
       ) : (
