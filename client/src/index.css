@@ -7,7 +7,7 @@
   src: url("./fonts/Segoe UI.ttf");
 }
 .screen {
-  @apply md:max-w-[1000px] md:mx-auto mx-2 font-Inter pt-20;
+  @apply md:max-w-[1000px] md:mx-auto mx-2 font-Inter md:pt-[4.1rem] pt-[4.5rem];
 }
 
 .image {

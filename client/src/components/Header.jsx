@@ -63,8 +63,8 @@ const Header = () => {
   const fullname = userInfo?.fullName
 
   return (
-    <section className=" fixed top-0 w-full bg-mainWhite/50 dark:bg-mainBlack/50 backdrop-blur-md z-50 select-none font-Inter  ">
-      <div className="flex  justify-between items-center border-b border-primary dark:border-primaryDark   md:py-2.5 py-3.5 md:px-8 px-4  ">
+    <nav className=" fixed top-0 w-full bg-mainWhite/50 dark:bg-mainBlack/50 backdrop-blur-md z-50 select-none font-Inter ">
+      <div className="flex  justify-between items-center border-b border-primary dark:border-primaryDark   md:py-2.5 py-3.5 md:px-14 px-4   ">
         <div className=" flex gap-10 items-center">
           <Link to="/" className=" text-2xl font-bold ">
             Anecdot.
@@ -171,7 +171,7 @@ const Header = () => {
           </button>
         </div>
       )}
-    </section>
+    </nav>
   )
 }
 
