@@ -23,7 +23,7 @@ app.use(
     origin: process.env.ORIGIN,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
-    exposedHeaders: ["set-cookie"],
+    exposedHeaders: ["Set-Cookie"],
   })
 )
 app.use(express.json())
@@ -206,9 +206,11 @@ app.delete("/post/:id", async (req, res) => {
       return res.status(400).json("You are not the author")
     }
     if (postDoc.cover) {
-      const path = postDoc.cover.split("/").pop()
-      const fullPath = path.join(__dirname, "..", "uploads", path)
-      fs.unlinkSync(fullPath)
+      try {
+        fs.unlinkSync(postDoc.cover)
+      } catch (err) {
+        console.error("Error deleting file:", err)
+      }
     }
     await Post.findByIdAndDelete(id)
     res.json({ message: "Post deleted successfully" })
