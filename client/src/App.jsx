@@ -11,7 +11,6 @@ import EditPost from "./Pages/EditPost"
 import About from "./Pages/About"
 import ScrollToTop from "./components/ScrollToTop"
 import { ThemeContextProvider } from "./components/context/ThemeContext"
-import UserProfile from "./Pages/UserProfile"
 
 const App = () => {
   return (
@@ -28,7 +27,6 @@ const App = () => {
               <Route path="/post/:id" element={<PostPage />} />
               <Route path="/edit/:id" element={<EditPost />} />
               <Route path="/about" element={<About />} />
-              <Route path="/user/:id" element={<UserProfile />} />
             </Route>
           </Routes>
         </UserContextProvider>

@@ -55,7 +55,7 @@ app.post("/register", async (req, res) => {
       username,
       password: bcrypt.hashSync(password, salt),
     })
-    res.json(userDoc)
+    res.json({ message: "User Created!" }, userDoc)
   } catch (err) {
     res.status(400).json(err)
   }

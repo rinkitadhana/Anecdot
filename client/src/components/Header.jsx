@@ -24,6 +24,7 @@ const Header = () => {
       }
     } catch (error) {
       setUserInfo(null)
+      console.log(error)
     }
   }
 
@@ -135,11 +136,7 @@ const Header = () => {
       </div>
       {vis && (
         <div className="  absolute my-2 border w-fit flex flex-col md:gap-2 gap-1 md:p-3 p-1 md:right-6 right-4 bg-mainWhite  dark:bg-zinc-900  z-50 rounded-md border-primary dark:border-primaryDark md:min-w-[270px]">
-          <Link
-            to={`/user/${userInfo?.id || "404"}`}
-            onClick={() => setVis(false)}
-            className=" md:dark:hover:bg-primaryDark md:hover:bg-primary/55 transition-all rounded-md p-2.5 "
-          >
+          <div className=" md:dark:hover:bg-primaryDark md:hover:bg-primary/55 transition-all rounded-md p-2.5 ">
             <div className=" flex gap-2.5 items-center">
               <img
                 src=""
@@ -155,7 +152,7 @@ const Header = () => {
                 <span className=" text-sm text-zinc-500">@{username}</span>
               </div>
             </div>
-          </Link>
+          </div>
 
           <div className=" border-b  border-primary dark:border-primaryDark " />
 

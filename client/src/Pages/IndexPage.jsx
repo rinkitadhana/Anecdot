@@ -21,7 +21,8 @@ const IndexPage = () => {
         <PostLoading />
       ) : (
         <div className=" flex flex-col gap-6 md:gap-2">
-          {posts.length > 0 && posts.map((post) => <Post {...post} />)}
+          {posts.length > 0 &&
+            posts.map((post) => <Post key={post._id} {...post} />)}
         </div>
       )}
     </section>
