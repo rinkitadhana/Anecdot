@@ -17,14 +17,17 @@ const IndexPage = () => {
   }, [])
   return (
     <section className="min-h-screen">
-      {loading ? (
-        <PostLoading />
-      ) : (
-        <div className=" flex flex-col gap-6 md:gap-2">
-          {posts.length > 0 &&
-            posts.map((post) => <Post key={post._id} {...post} />)}
-        </div>
-      )}
+      <div className="flex  gap-6 ">
+        {loading ? (
+          <PostLoading />
+        ) : (
+          <div className=" flex flex-col gap-6 md:gap-2">
+            {posts.length > 0 &&
+              posts.map((post) => <Post key={post._id} {...post} />)}
+          </div>
+        )}
+        <div></div>
+      </div>
     </section>
   )
 }
