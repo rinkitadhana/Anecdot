@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from "react"
 import { Link, Navigate, useParams } from "react-router-dom"
-import { FaUserCircle } from "react-icons/fa"
 import { format } from "date-fns"
 import { TfiWrite } from "react-icons/tfi"
-import PostPageLoading from "../components/PostPageLoading"
 import { MdDelete } from "react-icons/md"
+import { FaUserCircle } from "react-icons/fa"
+import { User, Calendar, Clock, Share2 } from "lucide-react"
+import PostPageLoading from "../components/PostPageLoading"
 
 import {
   AlertDialog,
@@ -26,6 +27,7 @@ const PostPage = () => {
   const { userInfo } = useContext(UserContext)
   const [redirect, setRedirect] = useState(false)
   const { id } = useParams()
+
   useEffect(() => {
     setLoading(true)
     fetch(`${import.meta.env.VITE_APP_URL}/post/${id}`).then((response) => {
@@ -35,6 +37,7 @@ const PostPage = () => {
       })
     })
   }, [])
+
   async function deletePost(ev) {
     ev.preventDefault()
     setRedirect(false)
@@ -46,80 +49,33 @@ const PostPage = () => {
       setRedirect(true)
     }
   }
+
   if (redirect) {
     return <Navigate to={"/"} />
   }
 
+  function formatDateTime(dateString) {
+    const date = new Date(dateString || Date.now())
+    return {
+      date: format(date, "MMM d, yyyy"),
+      time: format(date, "h:mm a"),
+    }
+  }
+
+  const dateTime = postInfo?.createdAt
+    ? formatDateTime(postInfo.createdAt)
+    : { date: "", time: "" }
+
   return (
-    <section className=" py-5 min-h-screen">
+    <main className="min-h-screen py-8">
       {loading ? (
         <PostPageLoading />
       ) : (
-        <section className="  flex flex-col md:gap-4 gap-4 mx-2 ">
-          <h1 className=" md:text-4xl text-xl font-semibold text-center">
-            {postInfo?.title || "Error : Something went wrong!"}
-          </h1>
-          <div className="flex md:flex-row flex-col gap-2  justify-center  items-center mx-auto ">
-            <h1 className="flex gap-1 font-semibold items-center w-fit rounded-md ">
-              <span className=" text-2xl">
-                <FaUserCircle />
-              </span>
-
-              {postInfo?.author?.fullName || "Anonymous"}
-            </h1>
-            <span className=" hidden md:block">•</span>
-            <p className=" text-sm font-medium opacity-80">
-              {format(
-                new Date(postInfo?.createdAt || Date.now()),
-                "dd MMM, yyy | hh:mm a"
-              )}
-            </p>
-          </div>
-
-          {userInfo?.id === postInfo?.author?._id && (
-            <div className="flex gap-2 justify-center">
-              <Link
-                className=" border-2 border-mainBlack dark:border-mainWhite px-2 py-1 rounded-md font-semibold font-sans flex  md:hover:bg-mainBlack md:dark:hover:bg-mainWhite  transition-all md:hover:text-mainWhite md:dark:hover:text-mainBlack items-center gap-1"
-                to={`/edit/${postInfo?._id}`}
-              >
-                <TfiWrite />
-                Edit Post
-              </Link>
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button title="delete" variant="custom">
-                    <MdDelete />
-                  </Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent className="bg-mainWhite">
-                  <AlertDialogHeader>
-                    <AlertDialogTitle className=" font-popins font-medium md:text-xl text-mainBlack dark:text-mainWhite">
-                      Are you absolutely sure?
-                    </AlertDialogTitle>
-                    <AlertDialogDescription className="text-zinc-800 font-popins ">
-                      This action cannot be undone. This will permanently delete
-                      your post and remove your data from our servers.
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel className="  border-2 bg-mainWhite dark:hover:bg-mainWhite dark:hover:text-mainBlack dark:border-mainWhite dark:bg-mainBlack text-mainBlack dark:text-mainWhite border-black hover:bg-black hover:text-white">
-                      Cancel
-                    </AlertDialogCancel>
-                    <AlertDialogAction
-                      onClick={deletePost}
-                      className=" hover:bg-red-400 dark:text-red-400 dark:hover:text-mainWhite dark:hover:bg-red-400 bg-mainWhite dark:bg-mainBlack hover:text-white text-red-400 border-red-400 border-2"
-                    >
-                      Delete
-                    </AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
-            </div>
-          )}
-
-          <div>
+        <article className="max-w-4xl mx-auto px-4 sm:px-6">
+          {/* Cover Image */}
+          <div className="mb-8 rounded-xl overflow-hidden shadow-lg">
             <img
-              className=" w-full object-cover rounded-md h-full"
+              className="w-full h-[300px] sm:h-[400px] object-cover transition-transform duration-300 hover:scale-[1.02]"
               src={
                 postInfo?.cover ||
                 "https://placehold.co/600x400?text=Image+Not+Found"
@@ -132,15 +88,103 @@ const PostPage = () => {
             />
           </div>
 
+          {/* Title */}
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-4">
+            {postInfo?.title || "Error: Something went wrong!"}
+          </h1>
+
+          {/* Author and Date Info */}
+          <div className="flex flex-wrap items-center gap-6 mb-8 text-sm text-zinc-600 dark:text-zinc-300">
+            <div className="flex items-center gap-2">
+              <User size={16} className="text-zinc-500 dark:text-zinc-400" />
+              <span className="font-medium">
+                {postInfo?.author?.fullName || "Anonymous"}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <Calendar
+                size={16}
+                className="text-zinc-500 dark:text-zinc-400"
+              />
+              <span>{dateTime.date}</span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <Clock size={16} className="text-zinc-500 dark:text-zinc-400" />
+              <span>{dateTime.time}</span>
+            </div>
+
+            <button
+              className="ml-auto flex items-center gap-2 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200 transition-colors"
+              onClick={() => {
+                navigator.clipboard.writeText(window.location.href)
+                alert("Link copied to clipboard")
+              }}
+            >
+              <Share2 size={16} />
+              <span className="hidden sm:inline">Share</span>
+            </button>
+          </div>
+
+          {userInfo?.id === postInfo?.author?._id && (
+            <div className="flex gap-3 mb-8">
+              <Link
+                className="inline-flex items-center gap-2 px-4 py-2 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-900 dark:text-zinc-100 rounded-md transition-colors font-medium text-sm"
+                to={`/edit/${postInfo?._id}`}
+              >
+                <TfiWrite className="text-zinc-600 dark:text-zinc-300" />
+                Edit Post
+              </Link>
+
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button
+                    title="Delete"
+                    variant="destructive"
+                    size="sm"
+                    className="inline-flex items-center gap-2"
+                  >
+                    <MdDelete />
+                    Delete
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent className="bg-mainWhite dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700">
+                  <AlertDialogHeader>
+                    <AlertDialogTitle className="text-xl font-bold">
+                      Delete this post?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription className="text-zinc-700 dark:text-zinc-300">
+                      This action cannot be undone. This will permanently delete
+                      your post and remove your data from our servers.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel className="bg-zinc-100 hover:bg-zinc-200 text-zinc-900 dark:bg-zinc-800 dark:hover:bg-zinc-700 dark:text-zinc-100 border-0">
+                      Cancel
+                    </AlertDialogCancel>
+                    <AlertDialogAction
+                      onClick={deletePost}
+                      className="bg-red-600 hover:bg-red-700 text-white border-0"
+                    >
+                      Delete
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </div>
+          )}
+
+          {/* Content */}
           <div
-            className="  md:text-lg "
+            className="prose prose-zinc dark:prose-invert max-w-none prose-headings:font-bold prose-p:text-base prose-img:rounded-md prose-a:text-blue-600 dark:prose-a:text-blue-400"
             dangerouslySetInnerHTML={{
-              __html: postInfo?.content || "Error : Something went wrong!",
+              __html: postInfo?.content || "Error: Something went wrong!",
             }}
           ></div>
-        </section>
+        </article>
       )}
-    </section>
+    </main>
   )
 }
 
