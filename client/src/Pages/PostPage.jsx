@@ -3,8 +3,8 @@ import { Link, Navigate, useParams } from "react-router-dom"
 import { format } from "date-fns"
 import { TfiWrite } from "react-icons/tfi"
 import { MdDelete } from "react-icons/md"
-import { FaUserCircle } from "react-icons/fa"
 import { User, Calendar, Clock, Share2 } from "lucide-react"
+import { toast } from "react-hot-toast"
 import PostPageLoading from "../components/PostPageLoading"
 
 import {
@@ -43,6 +43,7 @@ const PostPage = () => {
     setRedirect(false)
     const response = await fetch(`${import.meta.env.VITE_APP_URL}/post/${id}`, {
       method: "DELETE",
+
       credentials: "include",
     })
     if (response.ok) {
@@ -65,6 +66,14 @@ const PostPage = () => {
   const dateTime = postInfo?.createdAt
     ? formatDateTime(postInfo.createdAt)
     : { date: "", time: "" }
+
+  const handleShareClick = () => {
+    navigator.clipboard.writeText(window.location.href)
+    toast.success("Link copied to clipboard", {
+      duration: 2000,
+      position: "top-center",
+    })
+  }
 
   return (
     <main className="min-h-screen py-8">
@@ -117,10 +126,7 @@ const PostPage = () => {
 
             <button
               className="ml-auto flex items-center gap-2 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200 transition-colors"
-              onClick={() => {
-                navigator.clipboard.writeText(window.location.href)
-                alert("Link copied to clipboard")
-              }}
+              onClick={handleShareClick}
             >
               <Share2 size={16} />
               <span className="hidden sm:inline">Share</span>

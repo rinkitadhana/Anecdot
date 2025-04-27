@@ -7,46 +7,57 @@ const Footer = () => {
       id: 1,
       name: "Github",
       link: "https://github.com/rinkitadhana",
-      icon: <FiGithub />,
+      icon: <FiGithub size={20} />,
+      ariaLabel: "Visit GitHub profile",
     },
     {
       id: 2,
       name: "Twitter",
       link: "https://twitter.com/damnGruz",
-      icon: <FaXTwitter />,
+      icon: <FaXTwitter size={20} />,
+      ariaLabel: "Visit Twitter profile",
     },
     {
       id: 3,
       name: "LinkedIn",
       link: "https://www.linkedin.com/in/rinkitadhana",
-      icon: <FiLinkedin />,
+      icon: <FiLinkedin size={20} />,
+      ariaLabel: "Visit LinkedIn profile",
     },
-
     {
       id: 4,
       name: "Instagram",
-      link: "https://www.instagram.com/rnkktt",
-      icon: <FiInstagram />,
+      link: "https://www.instagram.com/",
+      icon: <FiInstagram size={20} />,
+      ariaLabel: "Visit Instagram profile",
     },
   ]
-  return (
-    <footer className=" select-none flex flex-col gap-1 items-center justify-centers py-8">
-      <div className=" border-b my-4 w-[95%] border-primary dark:border-primaryDark" />
-      <div className="flex flex-wrap gap-5 md:gap-4 items-center">
-        {links.map((link) => (
-          <a
-            href={link.link}
-            key={link.id}
-            target="_blank"
-            className=" font-medium text-xl md:text-base  md:hover:text-mainBlack/65 md:dark:hover:text-mainWhite/65 flex flex-row gap-1 items-center"
-          >
-            {link.icon}
-            <span className=" hidden md:block"> {link.name}</span>
-          </a>
-        ))}
-      </div>
 
-      <div>© 2024 Anecdot. All rights reserved.</div>
+  return (
+    <footer className="container mx-auto px-4 py-8">
+      <div className="border-t border-primary dark:border-primaryDark my-6" />
+
+      <div className="flex flex-col md:flex-row justify-between items-center">
+        <div className="flex gap-5 mb-4 md:mb-0">
+          {links.map((link) => (
+            <a
+              href={link.link}
+              key={link.id}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={link.ariaLabel}
+              className="flex items-center gap-2 text-base transition-colors duration-200 hover:opacity-80 dark:hover:opacity-80"
+            >
+              <span className="text-xl">{link.icon}</span>
+              <span className="hidden md:inline-block">{link.name}</span>
+            </a>
+          ))}
+        </div>
+
+        <div className="text-sm text-gray-600 dark:text-gray-400">
+          © {new Date().getFullYear()} Anecdot. All rights reserved.
+        </div>
+      </div>
     </footer>
   )
 }

@@ -11,13 +11,14 @@ import EditPost from "./Pages/EditPost"
 import About from "./Pages/About"
 import ScrollToTop from "./components/ScrollToTop"
 import { ThemeContextProvider } from "./components/context/ThemeContext"
-
+import { Toaster } from "react-hot-toast"
 const App = () => {
   return (
     <div>
       <ThemeContextProvider>
         <UserContextProvider>
           <ScrollToTop />
+          <Toaster />
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<IndexPage />} />

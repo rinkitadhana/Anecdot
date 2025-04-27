@@ -41,7 +41,7 @@ const Login = () => {
   }
 
   return (
-    <section className="flex flex-col gap-4  md:border border-zinc-300 dark:border-primaryDark rounded-md md:mt-16 mt-9 md:w-[45%] md:mx-auto md:px-4 py-16">
+    <section className="flex flex-col gap-4  md:border border-zinc-300  dark:border-zinc-700 rounded-xl md:mt-16 mt-9 md:w-[45%] md:mx-auto md:px-4 py-16">
       <div className="flex flex-col gap-0.5 items-center">
         <h1 className=" text-3xl font-semibold font-popins">LogIn</h1>
         <p className="text-sm  opacity-70">Enter your credentials here</p>
@@ -51,14 +51,14 @@ const Login = () => {
         <div className="flex flex-col gap-2 ">
           <input
             type="text"
-            placeholder="username"
+            placeholder="Username"
             className="input "
             value={username}
             onChange={(ev) => setUsername(ev.target.value)}
           />
           <input
             type="password"
-            placeholder="password"
+            placeholder="Password"
             className="input"
             value={password}
             onChange={(ev) => setPassword(ev.target.value)}
