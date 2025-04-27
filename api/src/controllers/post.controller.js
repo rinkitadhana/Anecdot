@@ -1,25 +1,31 @@
 import Post from "../models/Post.models.js"
-import fs from "fs"
+import { v2 as cloudinary } from "cloudinary"
 
 // Create a new post
 export const createPost = async (req, res) => {
-  if (!req.file) {
-    return res.status(400).json({ message: "File is required" })
-  }
-
-  const { title, summary, content } = req.body
-
-  // Input validation
-  if (!title || !summary || !content) {
-    return res.status(400).json({ message: "All post fields are required" })
-  }
-
   try {
+    const { title, summary, content } = req.body
+    const file = req.files?.file
+
+    if (!title || !summary || !content || !file) {
+      return res.status(400).json({ message: "All post fields are required" })
+    }
+
+    // Base64 encode the file
+    const fileStr = `data:${file.mimetype};base64,${file.data.toString(
+      "base64"
+    )}`
+
+    const uploadedResponse = await cloudinary.uploader.upload(fileStr, {
+      folder: "anecdote/posts",
+      resource_type: "image",
+    })
+
     const postDoc = await Post.create({
       title,
       summary,
       content,
-      cover: req.file.path,
+      cover: uploadedResponse.secure_url,
       author: req.user.id,
     })
 
@@ -30,9 +36,9 @@ export const createPost = async (req, res) => {
   }
 }
 
-// Update an existing post
 export const updatePost = async (req, res) => {
   const { id, title, summary, content } = req.body
+  const file = req.files?.file
 
   try {
     const postDoc = await Post.findById(id)
@@ -51,7 +57,37 @@ export const updatePost = async (req, res) => {
       title,
       summary,
       content,
-      cover: req.file ? req.file.path : postDoc.cover,
+      cover: postDoc.cover,
+    }
+
+    if (file) {
+      // Delete the old image from Cloudinary if it exists
+      if (postDoc.cover) {
+        const imageId = postDoc.cover.split("/").pop()?.split(".")[0]
+        if (imageId) {
+          try {
+            await cloudinary.uploader.destroy(`anecdote/posts/${imageId}`, {
+              resource_type: "image",
+              invalidate: true,
+            })
+          } catch (error) {
+            console.error("Error deleting old image:", error)
+          }
+        }
+      }
+
+      // Base64 encode the file
+      const fileStr = `data:${file.mimetype};base64,${file.data.toString(
+        "base64"
+      )}`
+
+      const uploadedResponse = await cloudinary.uploader.upload(fileStr, {
+        folder: "anecdote/posts",
+        resource_type: "image",
+        invalidate: true,
+      })
+
+      updateData.cover = uploadedResponse.secure_url
     }
 
     const updatedPost = await Post.findByIdAndUpdate(id, updateData, {
@@ -64,7 +100,6 @@ export const updatePost = async (req, res) => {
   }
 }
 
-// Delete a post
 export const deletePost = async (req, res) => {
   const { id } = req.params
 
@@ -81,12 +116,12 @@ export const deletePost = async (req, res) => {
         .json({ message: "Not authorized to delete this post" })
     }
 
-    // Optional: Delete cover file
     if (postDoc.cover) {
-      try {
-        fs.unlinkSync(postDoc.cover)
-      } catch (fileErr) {
-        console.warn("Could not delete cover file:", fileErr)
+      const imageId = postDoc.cover.split("/").pop()?.split(".")[0]
+      if (imageId) {
+        await cloudinary.uploader.destroy(`anecdote/posts/${imageId}`, {
+          resource_type: "image",
+        })
       }
     }
 
@@ -98,13 +133,12 @@ export const deletePost = async (req, res) => {
   }
 }
 
-// Get all posts
 export const getAllPosts = async (req, res) => {
   try {
     const posts = await Post.find()
       .populate("author", ["fullName"])
       .sort({ createdAt: -1 })
-      .limit(20) // Optional: limit to 20 most recent posts
+      .limit(20)
     res.json(posts)
   } catch (err) {
     console.error("Fetch Posts Error:", err)
@@ -114,7 +148,6 @@ export const getAllPosts = async (req, res) => {
   }
 }
 
-// Get a single post by ID
 export const getPostById = async (req, res) => {
   const { id } = req.params
 

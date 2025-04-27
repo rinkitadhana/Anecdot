@@ -45,25 +45,35 @@ const CreatePost = () => {
     ev.preventDefault()
     setError(null)
     setLoading(true)
+
+    if (!title || !summary || !content || !files?.[0]) {
+      setLoading(false)
+      return setError("Please fill in all fields!")
+    }
+
     const data = new FormData()
     data.set("title", title)
     data.set("summary", summary)
     data.set("content", content)
     data.set("file", files[0])
-    if (!title || !summary || !content || !files) {
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_APP_URL}/post`, {
+        method: "POST",
+        body: data,
+        credentials: "include",
+      })
+
+      if (response.ok) {
+        setRedirect(true)
+      } else {
+        const errorData = await response.json()
+        setError(errorData.message || "Something went wrong!")
+      }
+    } catch (err) {
+      setError("Network error. Please try again.")
+    } finally {
       setLoading(false)
-      return setError("Please fill in all fields!")
-    }
-    const response = await fetch(`${import.meta.env.VITE_APP_URL}/post`, {
-      method: "POST",
-      body: data,
-      credentials: "include",
-    })
-    setLoading(false)
-    if (response.ok) {
-      setRedirect(true)
-    } else {
-      setError("Something went wrong!")
     }
   }
   if (redirect) {
@@ -73,7 +83,7 @@ const CreatePost = () => {
   return (
     <section className=" mx-2 flex py-10  flex-col md:gap-6 gap-4">
       <h1 className=" text-2xl font-semibold font-popins">
-        What’s on Your Mind Today?
+        What's on Your Mind Today?
       </h1>
       <div>
         <form className=" flex flex-col gap-4 " onSubmit={createNewPost}>

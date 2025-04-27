@@ -9,6 +9,7 @@ import { FiLogOut } from "react-icons/fi"
 const Header = () => {
   const { userInfo, setUserInfo } = useContext(UserContext)
   const [vis, setVis] = useState(false)
+  const [prevLoginState, setPrevLoginState] = useState(false)
   const navigate = useNavigate()
 
   const fetchUserProfile = async () => {
@@ -28,15 +29,21 @@ const Header = () => {
     }
   }
 
+  // Initial profile fetch when component mounts
   useEffect(() => {
     fetchUserProfile()
   }, [])
 
-  // Re-fetch profile when userInfo changes
+  // Check for login state changes to update profile
   useEffect(() => {
-    if (userInfo) {
+    const isLoggedIn = !!userInfo
+
+    // Only fetch profile if login state changes from logged out to logged in
+    if (isLoggedIn && !prevLoginState) {
       fetchUserProfile()
     }
+
+    setPrevLoginState(isLoggedIn)
   }, [userInfo])
 
   const logout = async () => {

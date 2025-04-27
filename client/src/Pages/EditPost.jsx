@@ -32,7 +32,7 @@ const formats = [
   "image",
 ]
 
-const CreatePost = () => {
+const EditPost = () => {
   const [title, setTitle] = useState("")
   const [summary, setSummary] = useState("")
   const [content, setContent] = useState("")
@@ -45,41 +45,51 @@ const CreatePost = () => {
   useEffect(() => {
     fetch(`${import.meta.env.VITE_APP_URL}/post/` + id).then((response) => {
       response.json().then((postInfo) => {
-        setTitle(postInfo?.title || "Error!")
-        setSummary(postInfo?.summary || "Error!")
-        setContent(postInfo?.content || "Error!")
-        setFiles(postInfo?.files?.[0] || "Error!")
+        setTitle(postInfo?.title || "")
+        setSummary(postInfo?.summary || "")
+        setContent(postInfo?.content || "")
+        setFiles(postInfo?.files?.[0] || "")
       })
     })
-  }, [])
+  }, [id])
 
   async function updatePost(ev) {
     ev.preventDefault()
     setError(null)
     setLoading(true)
+
+    if (!title || !summary || !content) {
+      setLoading(false)
+      return setError("Title, summary and content are required!")
+    }
+
     const data = new FormData()
     data.set("title", title)
     data.set("summary", summary)
     data.set("content", content)
     data.set("id", id)
+
     if (files?.[0]) {
-      data.set("file", files?.[0] || "Error!")
+      data.set("file", files[0])
     }
-    if (!title || !summary || !content || !files) {
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_APP_URL}/post`, {
+        method: "PUT",
+        body: data,
+        credentials: "include",
+      })
+
+      if (response.ok) {
+        setRedirect(true)
+      } else {
+        const errorData = await response.json()
+        setError(errorData.message || "Something went wrong!")
+      }
+    } catch (err) {
+      setError("Network error. Please try again.")
+    } finally {
       setLoading(false)
-      return setError("Please fill in all fields!")
-    }
-    const response = await fetch(`${import.meta.env.VITE_APP_URL}/post`, {
-      method: "PUT",
-      body: data,
-      credentials: "include",
-    })
-    if (response.ok) {
-      setLoading(false)
-      setRedirect(true)
-    } else {
-      setLoading(false)
-      setError("Something went wrong!")
     }
   }
   if (redirect) {
@@ -146,4 +156,4 @@ const CreatePost = () => {
   )
 }
 
-export default CreatePost
+export default EditPost

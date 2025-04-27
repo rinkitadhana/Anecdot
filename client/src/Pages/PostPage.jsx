@@ -120,7 +120,10 @@ const PostPage = () => {
           <div>
             <img
               className=" w-full object-cover rounded-md h-full"
-              src={`${import.meta.env.VITE_APP_URL}/${postInfo?.cover}`}
+              src={
+                postInfo?.cover ||
+                "https://placehold.co/600x400?text=Image+Not+Found"
+              }
               alt="cover"
               onError={(e) => {
                 e.target.src =
