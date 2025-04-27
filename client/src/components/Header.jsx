@@ -5,6 +5,7 @@ import { TfiWrite } from "react-icons/tfi"
 import { ImSearch } from "react-icons/im"
 import ThemeButton from "./ThemeButton"
 import { FiLogOut } from "react-icons/fi"
+import { FaGithub } from "react-icons/fa6"
 
 const Header = () => {
   const { userInfo, setUserInfo } = useContext(UserContext)
@@ -98,6 +99,15 @@ const Header = () => {
             About
           </Link> */}
           <ThemeButton />
+
+          <a
+            href="https://github.com/rinkitadhana/Anecdot"
+            className=" flex gap-1 items-center  rounded-md bg-mainBlack px-2 text-mainWhite dark:text-mainBlack  py-1  font-semibold  dark:bg-mainWhite dark:border-mainWhite"
+          >
+            <FaGithub className=" text-sm" />
+            Github
+          </a>
+
           {username ? (
             <nav className=" flex gap-3 items-center">
               <Link
