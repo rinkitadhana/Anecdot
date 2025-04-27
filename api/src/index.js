@@ -7,29 +7,25 @@ import connectDB from "./Database/connectDB.js"
 import getDirname from "./utils/path.utils.js"
 import corsOptions from "./config/cors.config.js"
 
-// Routes
+// Roues
 import authRoutes from "./routes/auth.routes.js"
 import postRoutes from "./routes/post.routes.js"
 
 import { v2 as cloudinary } from "cloudinary"
 
-// Load environment variables
 dotenv.config({ path: "../.env" })
 
 const app = express()
 const PORT = process.env.PORT || 4000
 
-// Get __dirname equivalent in ESM
 const __dirname = getDirname(import.meta.url)
 
-// Middleware setup
 app.use(cors(corsOptions))
 app.use(express.json())
 app.use(cookieParser())
 app.use(
   fileUpload({
-    limits: { fileSize: 10 * 1024 * 1024 }, // 10MB max file size
-    useTempFiles: false,
+    limits: { fileSize: 10 * 1024 * 1024 },
   })
 )
 
@@ -39,16 +35,13 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 })
 
-// Root route
 app.get("/", (req, res) => {
   res.send("Welcome to the Blog API!")
 })
 
-// Route middleware - maintain original URL structure
 app.use("/", authRoutes)
 app.use("/post", postRoutes)
 
-// Database connection with error handling
 const startServer = async () => {
   try {
     await connectDB()
