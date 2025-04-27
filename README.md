@@ -1,6 +1,6 @@
 # Anecdot
 
-A modern blogging platform with user authentication, profile management, and theme customization.
+Developed a full-stack blogging platform with secure user authentication, profile management, and CRUD functionality for blog posts. Designed an intuitive, responsive UI with a modern aesthetic to enhance user engagement and streamline content creation.
 
 ## Tech Stack
 
