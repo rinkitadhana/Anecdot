@@ -82,9 +82,9 @@ const PostPage = () => {
       ) : (
         <article className="max-w-4xl mx-auto px-4 sm:px-6">
           {/* Cover Image */}
-          <div className="mb-8 rounded-xl overflow-hidden shadow-lg">
+          <div className="mb-8 rounded-md  overflow-hidden">
             <img
-              className="w-full h-[300px] sm:h-[400px] object-cover transition-transform duration-300 hover:scale-[1.02]"
+              className="w-full md:max-h-[500px] max-h-[300px] h-full object-cover transition-transform duration-300"
               src={
                 postInfo?.cover ||
                 "https://placehold.co/600x400?text=Image+Not+Found"
@@ -125,11 +125,11 @@ const PostPage = () => {
             </div>
 
             <button
-              className="ml-auto flex items-center gap-2 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200 transition-colors"
+              className="md:ml-auto flex items-center gap-2 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200 transition-colors"
               onClick={handleShareClick}
             >
               <Share2 size={16} />
-              <span className="hidden sm:inline">Share</span>
+              <span>Share</span>
             </button>
           </div>
 

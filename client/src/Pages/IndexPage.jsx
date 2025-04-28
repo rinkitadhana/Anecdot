@@ -22,22 +22,19 @@ const IndexPage = () => {
 
   return (
     <section className="min-h-screen">
-      <div className="flex gap-6">
-        {loading ? (
-          <div className="w-full">
-            <PostLoading />
-          </div>
-        ) : (
-          <div className="flex flex-col gap-6 md:gap-2 w-full">
-            {posts.length > 0 ? (
-              posts.map((post) => <Post key={post._id} {...post} />)
-            ) : (
-              <p className="text-center">No posts found</p>
-            )}
-          </div>
-        )}
-        <div></div>
-      </div>
+      {loading ? (
+        <div className="w-full">
+          <PostLoading />
+        </div>
+      ) : (
+        <div className="flex flex-col gap-6 md:gap-2 w-full">
+          {posts.length > 0 ? (
+            posts.map((post) => <Post key={post._id} {...post} />)
+          ) : (
+            <p className="text-center">No posts found</p>
+          )}
+        </div>
+      )}
     </section>
   )
 }
