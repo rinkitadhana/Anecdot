@@ -5,6 +5,10 @@ const PostPageLoading = () => {
   return (
     <main className="min-h-screen ">
       <article className="max-w-4xl mx-auto px-4 sm:px-6">
+        <div className="py-6 flex justify-start">
+          <Skeleton className="w-16 h-5 rounded-md" />
+        </div>
+
         {/* Cover Image Skeleton */}
         <div className="mb-8 rounded-md overflow-hidden">
           <Skeleton className="w-full md:max-h-[500px] max-h-[300px] h-[340px] object-cover" />
