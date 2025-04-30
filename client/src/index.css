@@ -25,7 +25,7 @@
   @apply w-full border border-mainBlack  dark:border-mainWhite md:dark:hover:bg-mainWhite md:dark:hover:text-mainBlack rounded-md py-1 md:hover:bg-mainBlack md:hover:text-mainWhite font-semibold transition-all font-sans flex justify-center items-center;
 }
 .create-btn {
-  @apply md:w-fit  px-2 py-1  border-2 mx-auto border-zinc-800 rounded-md   transition-all  w-full    dark:border-mainWhite md:dark:hover:bg-mainWhite md:dark:hover:text-mainBlack  md:hover:bg-mainBlack md:hover:text-mainWhite font-semibold  font-sans flex justify-center items-center;
+  @apply md:w-fit  select-none px-3 py-1.5  border-2 mx-auto border-zinc-800 rounded-lg   transition-all  w-full    dark:border-mainWhite md:dark:hover:bg-mainWhite md:dark:hover:text-mainBlack  md:hover:bg-mainBlack md:hover:text-mainWhite font-semibold  font-sans flex justify-center items-center;
 }
 .lnk {
   @apply text-blue-600 md:hover:text-blue-400 md:hover:underline;
