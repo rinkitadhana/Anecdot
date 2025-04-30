@@ -74,7 +74,7 @@ const Header = () => {
   return (
     <nav className=" fixed top-0 w-full bg-mainWhite/50 dark:bg-mainBlack/50 backdrop-blur-md z-50 select-none font-Inter ">
       <div className="flex  justify-between items-center border-b border-primary dark:border-primaryDark   md:py-3 py-3.5 md:px-14 px-4   ">
-        <div className=" flex gap-10 items-center">
+        <div className=" flex gap-10 items-center truncate">
           <Link to="/" className=" text-2xl font-bold ">
             Anecdot.
           </Link>
@@ -113,7 +113,7 @@ const Header = () => {
             <nav className=" flex gap-3 items-center">
               <Link
                 to="/create"
-                className=" flex gap-1 items-center  rounded-md bg-mainBlack px-2 text-mainWhite dark:text-mainBlack  py-1  font-semibold  dark:bg-mainWhite dark:border-mainWhite"
+                className=" flex gap-1 items-center  rounded-md bg-mainBlack px-2 truncate text-mainWhite dark:text-mainBlack  py-1  font-semibold  dark:bg-mainWhite dark:border-mainWhite"
               >
                 <TfiWrite className=" text-sm" />
                 Write
