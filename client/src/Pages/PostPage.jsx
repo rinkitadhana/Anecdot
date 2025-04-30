@@ -186,11 +186,11 @@ const PostPage = () => {
 
           {/* Content */}
           <div
-            className="prose prose-zinc dark:prose-invert max-w-none prose-headings:font-bold prose-p:text-base prose-img:rounded-md prose-a:text-blue-600 dark:prose-a:text-blue-400"
+            className="prose prose-zinc dark:prose-invert max-w-none prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-p:text-base prose-img:rounded-md prose-img:mx-auto prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-pre:bg-zinc-100 dark:prose-pre:bg-zinc-800 prose-code:text-sm prose-blockquote:border-l-4 prose-blockquote:border-zinc-300 dark:prose-blockquote:border-zinc-600 prose-blockquote:pl-4 prose-blockquote:italic prose-li:marker:text-zinc-500"
             dangerouslySetInnerHTML={{
               __html: postInfo?.content || "Error: Something went wrong!",
             }}
-          ></div>
+          />
         </article>
       )}
     </main>
