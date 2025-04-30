@@ -23,7 +23,7 @@ import { UserContext } from "../components/context/UserContext"
 
 const PostPage = () => {
   const [postInfo, setPostInfo] = useState(null)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [isDeleting, setIsDeleting] = useState(false)
   const { userInfo } = useContext(UserContext)
   const [redirect, setRedirect] = useState(false)
