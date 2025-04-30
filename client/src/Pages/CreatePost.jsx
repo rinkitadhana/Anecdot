@@ -4,6 +4,7 @@ import "react-quill/dist/quill.snow.css"
 import { Navigate } from "react-router-dom"
 import { FaSpinner } from "react-icons/fa6"
 import { X, Upload, Save, FileImage, AlertCircle } from "lucide-react"
+import Back from "../components/Back"
 
 const modules = {
   toolbar: [
@@ -110,7 +111,8 @@ const CreatePost = () => {
   }
 
   return (
-    <section className="max-w-4xl mx-auto px-4 py-10">
+    <section className="max-w-4xl mx-auto px-4 ">
+      <Back />
       <div className="mb-8 border-b border-zinc-200 dark:border-zinc-800 pb-4">
         <h1 className="text-3xl font-bold font-popins text-zinc-900 dark:text-zinc-50">
           Create New Post

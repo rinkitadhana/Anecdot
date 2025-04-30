@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
 import { UserContext } from "../components/context/UserContext"
+import Back from "../components/Back"
 
 const PostPage = () => {
   const [postInfo, setPostInfo] = useState(null)
@@ -78,11 +79,12 @@ const PostPage = () => {
   }
 
   return (
-    <main className="min-h-screen py-8">
+    <main className="min-h-screen ">
       {loading ? (
         <PostPageLoading />
       ) : (
         <article className="max-w-4xl mx-auto px-4 sm:px-6">
+          <Back />
           {/* Cover Image */}
           <div className="mb-8 rounded-md  overflow-hidden">
             <img
@@ -191,6 +193,7 @@ const PostPage = () => {
               __html: postInfo?.content || "Error: Something went wrong!",
             }}
           />
+          <Back />
         </article>
       )}
     </main>
