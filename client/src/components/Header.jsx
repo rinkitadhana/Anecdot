@@ -103,7 +103,7 @@ const Header = () => {
           <a
             href="https://github.com/rinkitadhana/Anecdot"
             target="_blank"
-            className=" flex gap-1 items-center  rounded-md bg-mainBlack px-2 text-mainWhite dark:text-mainBlack  py-1  font-semibold  dark:bg-mainWhite dark:border-mainWhite"
+            className=" hidden md:flex gap-1 items-center rounded-md bg-mainBlack px-2 text-mainWhite dark:text-mainBlack  py-1  font-semibold  dark:bg-mainWhite dark:border-mainWhite"
           >
             <FaGithub className=" text-sm" />
             Github
