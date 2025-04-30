@@ -26,7 +26,7 @@ const Post = ({ _id, title, summary, cover, createdAt, author }) => {
         <div className="flex flex-col md:flex-row h-full">
           <div className="md:w-2/5 overflow-hidden">
             <img
-              className="h-64  w-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+              className="h-64  w-full object-cover transform md:group-hover:scale-105 transition-transform duration-500"
               src={
                 cover || "https://placehold.co/600x400?text=No+Image+Available"
               }

@@ -24,6 +24,7 @@ import { UserContext } from "../components/context/UserContext"
 const PostPage = () => {
   const [postInfo, setPostInfo] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
   const { userInfo } = useContext(UserContext)
   const [redirect, setRedirect] = useState(false)
   const { id } = useParams()
@@ -47,6 +48,7 @@ const PostPage = () => {
       credentials: "include",
     })
     if (response.ok) {
+      setIsDeleting(true)
       setRedirect(true)
     }
   }
@@ -157,7 +159,7 @@ const PostPage = () => {
                 </AlertDialogTrigger>
                 <AlertDialogContent className="bg-mainWhite dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700">
                   <AlertDialogHeader>
-                    <AlertDialogTitle className="text-xl font-bold">
+                    <AlertDialogTitle className="text-xl font-bold dark:text-white">
                       Delete this post?
                     </AlertDialogTitle>
                     <AlertDialogDescription className="text-zinc-700 dark:text-zinc-300">
@@ -172,8 +174,9 @@ const PostPage = () => {
                     <AlertDialogAction
                       onClick={deletePost}
                       className="bg-red-600 hover:bg-red-700 text-white border-0"
+                      disabled={isDeleting}
                     >
-                      Delete
+                      {isDeleting ? "Deleting..." : "Delete"}
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>

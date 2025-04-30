@@ -27,7 +27,7 @@ const IndexPage = () => {
           <PostLoading />
         </div>
       ) : (
-        <div className="flex flex-col gap-6 md:gap-2 w-full">
+        <div className="flex flex-col gap-6 md:gap-2 w-full pt-4">
           {posts.length > 0 ? (
             posts.map((post) => <Post key={post._id} {...post} />)
           ) : (
