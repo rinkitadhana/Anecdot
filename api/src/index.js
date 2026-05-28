@@ -4,7 +4,6 @@ import dotenv from "dotenv"
 import cookieParser from "cookie-parser"
 import fileUpload from "express-fileupload"
 import connectDB from "./Database/connectDB.js"
-import getDirname from "./utils/path.utils.js"
 import corsOptions from "./config/cors.config.js"
 
 // Roues
@@ -18,8 +17,6 @@ dotenv.config({ path: "../.env" })
 const app = express()
 const PORT = process.env.PORT || 4000
 
-const __dirname = getDirname(import.meta.url)
-
 app.use(cors(corsOptions))
 app.use(express.json())
 app.use(cookieParser())
@@ -28,16 +25,6 @@ app.use(
     limits: { fileSize: 10 * 1024 * 1024 },
   })
 )
-
-app.use(async (req, res, next) => {
-  try {
-    await connectDB()
-    next()
-  } catch (error) {
-    console.error("Database connection failed:", error)
-    res.status(500).json({ error: "Database connection failed" })
-  }
-})
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -52,10 +39,18 @@ app.get("/", (req, res) => {
 app.use("/", authRoutes)
 app.use("/post", postRoutes)
 
-if (!process.env.VERCEL) {
-  app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`)
-  })
+const startServer = async () => {
+  try {
+    await connectDB()
+    app.listen(PORT, () => {
+      console.log(`Server running on http://localhost:${PORT}`)
+    })
+  } catch (error) {
+    console.error("Server startup error:", error)
+    process.exit(1)
+  }
 }
+
+startServer()
 
 export default app
