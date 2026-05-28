@@ -40,14 +40,14 @@ app.use("/", authRoutes)
 app.use("/post", postRoutes)
 
 const startServer = async () => {
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`)
+  })
+
   try {
     await connectDB()
-    app.listen(PORT, () => {
-      console.log(`Server running on http://localhost:${PORT}`)
-    })
   } catch (error) {
-    console.error("Server startup error:", error)
-    process.exit(1)
+    console.error("Database init error:", error)
   }
 }
 
