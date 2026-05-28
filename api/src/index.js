@@ -29,6 +29,16 @@ app.use(
   })
 )
 
+app.use(async (req, res, next) => {
+  try {
+    await connectDB()
+    next()
+  } catch (error) {
+    console.error("Database connection failed:", error)
+    res.status(500).json({ error: "Database connection failed" })
+  }
+})
+
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -42,18 +52,10 @@ app.get("/", (req, res) => {
 app.use("/", authRoutes)
 app.use("/post", postRoutes)
 
-const startServer = async () => {
-  try {
-    await connectDB()
-    app.listen(PORT, () => {
-      console.log(`Server running on http://localhost:${PORT}`)
-    })
-  } catch (err) {
-    console.error("Server startup error:", err)
-    process.exit(1)
-  }
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`)
+  })
 }
-
-startServer()
 
 export default app
