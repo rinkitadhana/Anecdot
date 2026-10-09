@@ -3,7 +3,7 @@ import cors from "cors"
 import dotenv from "dotenv"
 import cookieParser from "cookie-parser"
 import fileUpload from "express-fileupload"
-import connectDB from "./Database/connectDB.js"
+import connectDB, { disconnectDB } from "./Database/connectDB.js"
 import corsOptions from "./config/cors.config.js"
 
 // Roues
@@ -16,6 +16,15 @@ dotenv.config({ path: "../.env" })
 
 const app = express()
 const PORT = process.env.PORT || 4000
+const DB_IDLE_TIMEOUT_MS = 5 * 60 * 1000
+
+let idleTimer = null
+const scheduleDisconnect = () => {
+  clearTimeout(idleTimer)
+  idleTimer = setTimeout(() => {
+    disconnectDB().catch((error) => console.error("Database disconnect error:", error))
+  }, DB_IDLE_TIMEOUT_MS)
+}
 
 app.use(cors(corsOptions))
 app.use(express.json())
@@ -36,21 +45,23 @@ app.get("/", (req, res) => {
   res.send("Welcome to the Blog API!")
 })
 
+// Connect lazily per request and drop the connection when idle so the service can sleep
+app.use(async (req, res, next) => {
+  scheduleDisconnect()
+  try {
+    await connectDB()
+    next()
+  } catch (error) {
+    console.error("Database init error:", error)
+    res.status(503).json({ message: "Database unavailable" })
+  }
+})
+
 app.use("/", authRoutes)
 app.use("/post", postRoutes)
 
-const startServer = async () => {
-  app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`)
-  })
-
-  try {
-    await connectDB()
-  } catch (error) {
-    console.error("Database init error:", error)
-  }
-}
-
-startServer()
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`)
+})
 
 export default app

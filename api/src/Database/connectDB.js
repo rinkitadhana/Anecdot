@@ -30,4 +30,12 @@ const connectDB = async () => {
   }
 }
 
+// Close the connection so no heartbeat traffic keeps the Railway service awake
+export const disconnectDB = async () => {
+  if (mongoose.connection.readyState === 0) return
+  cachedConnectionPromise = null
+  await mongoose.disconnect()
+  console.log("MongoDB disconnected (idle)")
+}
+
 export default connectDB
